@@ -16,7 +16,7 @@ Session(app)
 conn = sqlite3.connect('giacomo.db', check_same_thread=False)
 c = conn.cursor()
 
-app.route("/register", method=["GET", "POST"])
+@app.route("/register", method=["GET", "POST"])
 def register():
     """ Register a new user """
     if request.method == "GET":
