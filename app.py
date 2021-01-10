@@ -52,7 +52,19 @@ def login():
     else:
         # if username or password is empty, return the errorpage
         if not request.form.get("username") or not request.form.get("password"):
-            return render_template("errorpage.html")
+            return render_template("errorlogin.html")
+        
+        # Search the entered username and password in the database
+        c.execute("SELECT * FROM registrants WHERE username = :username", {"username": request.form.get("username")})
+        results = c.fetchall()
+
+        # Check that the user exists, and that the password matches
+        if len(results) != 1 or not check_password_hash(results[0][2], request.form.get("password")):
+            return render_template("errorlogin.html")
+
+        # if successful, recognize the user via their user_id
+        session["user_id"] = results[0][0]
+        return redirect("/")
 
 @app.route("/")
 def index():
