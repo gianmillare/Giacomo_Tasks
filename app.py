@@ -49,6 +49,10 @@ def login():
     # if the request is a GET, return the html file
     if request.method == "GET":
         return render_template("login.html")
+    else:
+        # if username or password is empty, return the errorpage
+        if not request.form.get("username") or not request.form.get("password"):
+            return render_template("errorpage.html")
 
 @app.route("/")
 def index():
