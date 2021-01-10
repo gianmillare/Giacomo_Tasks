@@ -55,11 +55,11 @@ def login():
             return render_template("errorlogin.html")
         
         # Search the entered username and password in the database
-        c.execute("SELECT * FROM registrants WHERE username = :username", {"username": request.form.get("username")})
+        c.execute("SELECT * FROM housemates WHERE username = :username", {"username": request.form.get("username")})
         results = c.fetchall()
 
         # Check that the user exists, and that the password matches
-        if len(results) != 1 or not check_password_hash(results[0][2], request.form.get("password")):
+        if len(results) != 1 or not check_password_hash(results[0][3], request.form.get("password")):
             return render_template("errorlogin.html")
 
         # if successful, recognize the user via their user_id
@@ -67,5 +67,6 @@ def login():
         return redirect("/")
 
 @app.route("/")
+@login_required
 def index():
     return render_template("index.html")
