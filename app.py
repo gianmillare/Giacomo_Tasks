@@ -16,6 +16,7 @@ Session(app)
 conn = sqlite3.connect('giacomo.db', check_same_thread=False)
 c = conn.cursor()
 
+# Register function
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """ Register a new user """
@@ -37,6 +38,17 @@ def register():
                 return render_template("errorpage.html")
             
             return render_template("/register_success.html")
+
+# Login function
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    """ Registered users may log into the app """
+
+    session.clear()
+
+    # if the request is a GET, return the html file
+    if request.method == "GET":
+        return render_template("login.html")
 
 @app.route("/")
 def index():
