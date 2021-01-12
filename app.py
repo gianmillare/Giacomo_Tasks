@@ -66,7 +66,24 @@ def login():
         session["user_id"] = results[0][0]
         return redirect("/")
 
+# Homepage where users can see which tasks are assigned to them
 @app.route("/")
 @login_required
 def index():
     return render_template("index.html")
+
+# Reserve: Users can assign certain tasks to themselves
+@app.route("/reserve")
+@login_required
+def reserve():
+    return render_template("reserve.html")
+
+# History: Users can view which tasks were completed and at what date/time
+@app.route("/history")
+@login_required
+def history():
+    return render_template("history.html")
+
+# Create: Users can create a task to add to the master list
+
+# Delete: Users can delete tasks from the master list
