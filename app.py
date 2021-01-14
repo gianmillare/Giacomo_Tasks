@@ -78,15 +78,23 @@ def index():
 def reserve():
     return render_template("reserve.html")
 
+# Create: Users can create a task to add to the master list
+@app.route("/create")
+@login_required
+def create():
+    return render_template("create.html")
+
+# Delete: Users can delete tasks from the master list
+@app.route("/delete")
+@login_required
+def delete():
+    return render_template("delete.html")
+
 # History: Users can view which tasks were completed and at what date/time
 @app.route("/history")
 @login_required
 def history():
     return render_template("history.html")
-
-# Create: Users can create a task to add to the master list
-
-# Delete: Users can delete tasks from the master list
 
 # Logout Function
 @app.route("/logout")
