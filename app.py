@@ -87,3 +87,11 @@ def history():
 # Create: Users can create a task to add to the master list
 
 # Delete: Users can delete tasks from the master list
+
+# Logout Function
+@app.route("/logout")
+def logout():
+    """ User's option to logout of the app """
+
+    session.clear()
+    return redirect("/")
