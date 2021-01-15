@@ -84,6 +84,12 @@ def reserve():
 def create():
     return render_template("create.html")
 
+# Edit: Users can select and edit a task
+@app.route("/edit")
+@login_required
+def edit():
+    return render_template("edit.html")
+
 # Delete: Users can delete tasks from the master list
 @app.route("/delete")
 @login_required
