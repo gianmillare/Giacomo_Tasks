@@ -90,6 +90,12 @@ def create():
 def delete():
     return render_template("delete.html")
 
+# Gym: Users can reserve an amount of time to use the home gym
+@app.route("/gym") 
+@login_required
+def gym():
+    return render_template("gym.html")
+
 # History: Users can view which tasks were completed and at what date/time
 @app.route("/history")
 @login_required
