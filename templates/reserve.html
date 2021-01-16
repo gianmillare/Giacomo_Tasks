@@ -5,5 +5,16 @@
 {% endblock %}
 
 {% block main %}
-<h1>A page for reserving a task!</h1>
+    <form action="/reserve" method="POST">
+        <div class="form-group">
+            <select id="task_list" class="form-control" name="task_item" required onchange="enableButton()">
+                <option selected value="">Select a task</option>
+                {% for task in tasks %}
+                    <option value="{{ task }}">{{ task }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit" id="submit">Reserve</button>
+    </form>
 {% endblock %}

@@ -73,10 +73,17 @@ def index():
     return render_template("index.html")
 
 # Reserve: Users can assign certain tasks to themselves
-@app.route("/reserve")
+@app.route("/reserve", methods=["GET", "POST"])
 @login_required
 def reserve():
-    return render_template("reserve.html")
+    """ A drop down where users can reserve a task """
+    if request.method == "GET":
+
+        rows = c.execute("""
+        SELECT title, description, score FROM tasks;
+        """)
+
+        return render_template("reserve.html", tasks = [ row[0] for row in rows ])
 
 # Create: Users can create a task to add to the master list
 @app.route("/create", methods=["GET", "POST"])
