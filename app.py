@@ -83,7 +83,7 @@ def reserve():
         SELECT title, description, score FROM tasks;
         """)
 
-        return render_template("reserve.html", tasks = [ row[0] for row in rows ])
+        return render_template("reserve.html", tasks = [ row[0] + " (" + str(row[2]) + ") " for row in rows ])
 
 # Create: Users can create a task to add to the master list
 @app.route("/create", methods=["GET", "POST"])
