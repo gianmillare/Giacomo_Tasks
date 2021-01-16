@@ -84,8 +84,16 @@ def reserve():
 def create():
     """ Allow users to create a task and add the task to the master list to reserve """
     if request.method == "GET":
-        return render_template("expense.html")
+        return render_template("create.html")
     else:
+        title = request.form.get("title")
+        description = request.form.get("description")
+        score = request.form.get("score")
+
+        c.execute("INSERT INTO tasks (title, description, score) VALUES (?, ?, ?)",
+                    (title, description, score))
+        conn.commit()
+
         return redirect("/")
 
 # Edit: Users can select and edit a task
