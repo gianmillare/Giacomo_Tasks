@@ -17,9 +17,16 @@
             <input class="form-control" id="task_desc" name="description" onkeyup="enableButton()" type="text" placeholder="Description">
         </div>
 
-        <!-- User will enter a difficulty for the task (this is also the score they receive on completion) -->
+        <!-- User will select a difficulty for the task (this is also the score they receive on completion) -->
         <div class="form-group">
-            <input class="form-control" name="score" type="number" step="1" min=1 max=5 placeholder="Difficulty (Default = 1)">
+            <select id="task_score" class="form-control" name="score" required onchange="enableButton()">
+                <option selected value="">Difficulty</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
         </div>
 
         <!-- User clicks button to submit the new task -->
@@ -29,11 +36,14 @@
 
     <script>
         function enableButton() {
-            if (document.getElementById('task_title').value === "" || document.getElementById('task_desc').value === "") {
-                    document.getElementById('submit').disabled = true;
-                } else {
-                    document.getElementById('submit').disabled = false;
-                }
+
+            var task_score = document.getElementById('task_score');
+
+            if (document.getElementById('task_title').value === "" || document.getElementById('task_desc').value === "" || !task_score.value) {
+                document.getElementById('submit').disabled = true;
+            } else {
+                document.getElementById('submit').disabled = false;
+            }
         }
     </script>
 {% endblock %}

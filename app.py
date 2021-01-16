@@ -88,7 +88,11 @@ def create():
     else:
         title = request.form.get("title")
         description = request.form.get("description")
-        score = request.form.get("score")
+
+        if request.form.get("score") >= 1:
+            score = request.form.get("score")
+        else:
+            score = 1
 
         c.execute("INSERT INTO tasks (title, description, score) VALUES (?, ?, ?)",
                     (title, description, score))
