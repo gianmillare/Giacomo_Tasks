@@ -5,5 +5,25 @@
 {% endblock %}
 
 {% block main %}
-<h1>Page to Create a task.</h1>
+    <form action="/create" method="POST">
+
+        <!-- User will enter a title -->
+        <div class="form-group">
+            <input class="form-control" name="title" type="text" placeholder="Title" autofocus>
+        </div>
+
+        <!-- User will enter a description of the task -->
+        <div class="form-group">
+            <input class="form-control" name="description" type="text" placeholder="Describe the task">
+        </div>
+
+        <!-- User will enter a difficulty for the task (this is also the score they receive on completion) -->
+        <div class="form-group">
+            <input class="form-control" name="score" type="number" step="1" min=1 placeholder="Difficulty">
+        </div>
+
+        <!-- User clicks button to submit the new task -->
+        <button class="btn btn-primary" type="submit">Create Task</button>
+
+    </form>
 {% endblock %}

@@ -16,7 +16,7 @@ Session(app)
 conn = sqlite3.connect('giacomo.db', check_same_thread=False)
 c = conn.cursor()
 
-# Register function
+# (COMPLETED) Register function
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """ Register a new user """
@@ -39,7 +39,7 @@ def register():
             
             return render_template("/register_success.html")
 
-# Login function
+# (COMPLETED) Login function
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """ Registered users may log into the app """
@@ -79,10 +79,14 @@ def reserve():
     return render_template("reserve.html")
 
 # Create: Users can create a task to add to the master list
-@app.route("/create")
+@app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
-    return render_template("create.html")
+    """ Allow users to create a task and add the task to the master list to reserve """
+    if request.method == "GET":
+        return render_template("expense.html")
+    else:
+        return redirect("/")
 
 # Edit: Users can select and edit a task
 @app.route("/edit")
