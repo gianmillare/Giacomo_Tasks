@@ -80,10 +80,25 @@ def reserve():
     if request.method == "GET":
 
         rows = c.execute("""
-        SELECT title, description, score FROM tasks;
+        SELECT title, description, score FROM tasks WHERE user_id = 0;
         """)
 
         return render_template("reserve.html", tasks = [ row[0] + " (" + str(row[2]) + ") " for row in rows ])
+    else:
+        selected_task = request.form.get("task_item")
+
+        search_count = 0
+        for i in selected_task:
+            if i != "(":
+                search_count += 1
+            else:
+                break
+        
+        to_reserve = selected_task[:search_count]
+        print(to_reserve)
+        return redirect("/")
+
+
 
 # Create: Users can create a task to add to the master list
 @app.route("/create", methods=["GET", "POST"])
