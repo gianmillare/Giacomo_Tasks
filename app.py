@@ -105,18 +105,42 @@ def reserve():
         SELECT task_id FROM tasks where title = :to_reserve;
         """, {"to_reserve": to_reserve})
 
-        rows = c.fetchall()
+        task_ind = c.fetchall()[0][0]
 
         # Change the user_id of the above task to the current user
+        c.execute("""
+        UPDATE tasks SET user_id = :user_id WHERE task_id = :task_id
+        """, {"user_id": session["user_id"], "task_id": task_ind})
+
+        conn.commit()
 
         # Add the task to the users reserved list
+        c.execute("""
+        SELECT title, description, score
+        FROM tasks
+        WHERE task_id = :task_id
+        """, {"task_id": task_ind})
 
+        # query results
+        task_to_reserve = c.fetchall()[0]
+
+        # assign title, description, and score
+        title = task_to_reserve[0]
+        description = task_to_reserve[1]
+        score = task_to_reserve[2]
+
+        # insert the task into the reserved databased under the users id
+        c.execute("""
+        INSERT INTO reserved (user_id, title, description, score) VALUES (?, ?, ?, ?)
+        """, (session["user_id"], title, description, score))
+
+        conn.commit()
 
         return redirect("/")
 
 
 
-# Create: Users can create a task to add to the master list
+# (COMPLETED) Create: Users can create a task to add to the master list
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
