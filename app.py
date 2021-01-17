@@ -79,14 +79,17 @@ def reserve():
     """ A drop down where users can reserve a task """
     if request.method == "GET":
 
+        # Display the tasks title and difficulty from the drop down
         rows = c.execute("""
         SELECT title, description, score FROM tasks WHERE user_id = 0;
         """)
 
         return render_template("reserve.html", tasks = [ row[0] + " (" + str(row[2]) + ") " for row in rows ])
     else:
+        # variable to hold the selected task on the drop down
         selected_task = request.form.get("task_item")
 
+        # find the index of the selected item to only receive the task title to search the task list
         search_count = 0
         for i in selected_task:
             if i != "(":
@@ -94,8 +97,19 @@ def reserve():
             else:
                 break
         
-        to_reserve = selected_task[:search_count]
+        # to distiniguish from other tasks, we stop the index right before the paranthesis
+        to_reserve = selected_task[:search_count - 1]
         print(to_reserve)
+
+        # search throught he database for a task title that matches to_reserve
+        c.execute("""
+        SELECT task_id FROM tasks where title = :to_reserve;
+        """, {"to_reserve": to_reserve})
+
+        rows = c.fetchall()
+        
+        print(rows[0])
+
         return redirect("/")
 
 
