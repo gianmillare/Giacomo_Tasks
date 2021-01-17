@@ -99,7 +99,6 @@ def reserve():
         
         # to distiniguish from other tasks, we stop the index right before the paranthesis
         to_reserve = selected_task[:search_count - 1]
-        print(to_reserve)
 
         # search throught he database for a task title that matches to_reserve
         c.execute("""
@@ -107,8 +106,11 @@ def reserve():
         """, {"to_reserve": to_reserve})
 
         rows = c.fetchall()
-        
-        print(rows[0])
+
+        # Change the user_id of the above task to the current user
+
+        # Add the task to the users reserved list
+
 
         return redirect("/")
 
