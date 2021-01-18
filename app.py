@@ -89,6 +89,13 @@ def index():
             "description": row[1],
             "score": row[2]
         })
+    
+    if len(user_reserved_tasks) == 0:
+        user_reserved_tasks = [{
+            "title": "---",
+            "description": "Your Task list is empty. Please go to Reserve to assign tasks.",
+            "score": 0
+        }]
 
     return render_template("index.html", user_reserved_tasks=user_reserved_tasks)
 
