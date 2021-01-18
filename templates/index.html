@@ -5,7 +5,28 @@
 {% endblock %}
 
 {% block main %}
-<div class="col-12">
-    <h1>Hello World!</h1>
-</div>
+    <div class="col-12">
+        <table class="table table-striped">
+
+            <!-- Header -->
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- Tasks -->
+                {% for i in user_reserved_tasks %}
+                <tr>
+                    <td>{{ i["title"] }}</td>
+                    <td>{{ i["description"] }}</td>
+                    <td>{{ i["score"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
