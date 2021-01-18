@@ -73,7 +73,7 @@ def index():
     """ Show all reserved tasks. Prospective: show weekly score. show reserved gym time """
 
     # Query the reserved list for the specific user.
-    c.execute(""""
+    c.execute("""
     SELECT title, description, score FROM reserved WHERE user_id = :user_id
     """, {"user_id": session["user_id"]})
 
