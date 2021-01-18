@@ -70,9 +70,29 @@ def login():
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    """ Show all reserved tasks. Prospective: show weekly score. show reserved gym time """
 
-# Reserve: Users can assign certain tasks to themselves
+    # Query the reserved list for the specific user.
+    c.execute(""""
+    SELECT title, description, score FROM reserved WHERE user_id = :user_id
+    """, {"user_id": session["user_id"]})
+
+    rows = c.fetchall()
+
+    # create a list to hold the task object
+    user_reserved_tasks = []
+
+    # append the object into the list for easier iteration
+    for row in rows:
+        user_reserved_tasks.append({
+            "title": row[0],
+            "description": row[1],
+            "score": row[2]
+        })
+
+    return render_template("index.html", user_reserved_tasks=user_reserved_tasks)
+
+# (COMPLETED) Reserve: Users can assign certain tasks to themselves
 @app.route("/reserve", methods=["GET", "POST"])
 @login_required
 def reserve():
