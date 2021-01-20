@@ -203,7 +203,7 @@ def delete():
         SELECT title, description, score FROM tasks WHERE user_id = 0;
         """)
 
-        return render_template("reserve.html", tasks = [ row[0] + " (" + str(row[2]) + ") " for row in rows ])
+        return render_template("delete.html", tasks = [ row[0] + " (" + str(row[2]) + ") " for row in rows ])
     else:
         # variable to hold the selected task from the drop down
         selected_task = request.form.get("task_item")
