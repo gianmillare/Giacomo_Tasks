@@ -204,6 +204,35 @@ def delete():
         """)
 
         return render_template("reserve.html", tasks = [ row[0] + " (" + str(row[2]) + ") " for row in rows ])
+    else:
+        # variable to hold the selected task from the drop down
+        selected_task = request.form.get("task_item")
+
+        # find the index of the selected item to only receive the task title to search the task list
+        search_count = 0
+        for i in selected_task:
+            if i != "(":
+                search_count += 1
+            else:
+                break
+        
+        # to distiniguish from other tasks, we stop the index right before the paranthesis
+        task_title_only = selected_task[:search_count - 1]
+
+        # search through the database for a task title that matches task_title_only
+        c.execute("""
+        SELECT task_id FROM tasks where title = :task_title_only;
+        """, {"task_title_only": task_title_only})
+
+        task_id_to_delete = c.fetchall()[0][0]
+
+        # Delete the task by task_id
+        c.execute("""
+        DELETE FROM tasks WHERE task_id = :task_id_to_delete;  
+        """, {"task_id_to_delete": task_id_to_delete})
+        conn.commit()
+
+        return redirect("/")
 
 # Gym: Users can reserve an amount of time to use the home gym
 @app.route("/gym") 
