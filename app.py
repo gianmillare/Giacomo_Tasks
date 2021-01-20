@@ -192,10 +192,18 @@ def edit():
     return render_template("edit.html")
 
 # Delete: Users can delete tasks from the master list
-@app.route("/delete")
+@app.route("/delete", methods=["GET", "POST"])
 @login_required
 def delete():
-    return render_template("delete.html")
+    """ A drop down where users can delete a task """
+    if request.method == "GET":
+
+        # Display the tasks title and difficulty from the drop down
+        rows = c.execute("""
+        SELECT title, description, score FROM tasks WHERE user_id = 0;
+        """)
+
+        return render_template("reserve.html", tasks = [ row[0] + " (" + str(row[2]) + ") " for row in rows ])
 
 # Gym: Users can reserve an amount of time to use the home gym
 @app.route("/gym") 
