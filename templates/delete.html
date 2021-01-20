@@ -1,9 +1,29 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Delete a Task 
+    Delete
 {% endblock %}
 
 {% block main %}
-    <h1>Page to delete a task.</h1>
+    <form action="/delete" method="POST">
+        <div class="form-group">
+            <select id="task_list" class="form-control" name="task_item" required onchange="enableButton()">
+                <option selected value="">Select a task</option>
+                {% for task in tasks %}
+                    <option value="{{ task }}">{{ task }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button class="btn btn-danger" type="submit" id="submit" disabled>Delete</button>
+
+    </form>
+
+    <script>
+        function enableButton() {
+            var selectedItem = document.getElementById('task_list');
+            var buttonElem = document.getElementById('submit');
+            buttonElem.disabled = !selectedItem.value;
+        }
+    </script>
 {% endblock %}

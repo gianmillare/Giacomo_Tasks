@@ -66,7 +66,7 @@ def login():
         session["user_id"] = results[0][0]
         return redirect("/")
 
-# Homepage where users can see which tasks are assigned to them
+# (COMPLETED) Homepage where users can see which tasks are assigned to them
 @app.route("/")
 @login_required
 def index():
