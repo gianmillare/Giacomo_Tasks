@@ -214,7 +214,38 @@ def edit():
         # Distinguish the task by its title
         title_of_task_to_edit = task_to_edit[:search_count - 1]
 
-        print(title_of_task_to_edit)
+        c.execute("""
+        SELECT task_id, description, score FROM tasks WHERE title = :title_of_task_to_edit
+        """, {"title_of_task_to_edit": title_of_task_to_edit})
+
+        # Query the old values for the task
+        edit_task_id = c.fetchall()[0][0]
+        old_desc = c.fetchall()[0][1]
+        old_score = c.fetchall()[0][2]
+
+        # assign each new value from USER to a variable
+        title_new = request.form.get("task_title")
+        desc_new = request.form.get("task_desc")
+        score_new = request.form.get("task_score")
+
+        # if any new values are empty, they should equal the old value
+        if title_new == "":
+            title_new = title_of_task_to_edit
+        
+        if desc_new == "":
+            desc_new = old_desc
+        
+        if score_new == "":
+            score_new = old_score
+
+        # push the changes to the database by task_id
+        c.execute("""
+        UPDATE tasks SET title = :title_new, description = :desc_new, score = :score_new
+        WHERE task_id = :edit_task_id
+        """, {"title_new": title_new, "desc_new": desc_new, "score_new": score_new, "edit_task_id": edit_task_id})
+
+        conn.commit()
+
         return redirect("/")
 
 # Delete: Users can delete tasks from the master list
