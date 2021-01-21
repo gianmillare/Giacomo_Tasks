@@ -199,8 +199,23 @@ def edit():
 
         return render_template("edit.html", tasks = [row[0] + " (" + str(row[1]) + ") " for row in rows])
     else:
-        return redirect("/")
+        
+        # assign the selected item to a variable
+        task_to_edit = request.form.get("task_id")
 
+        # find the task_id in database via titling
+        search_count = 0
+        for i in task_to_edit:
+            if i != "(":
+                search_count += 1
+            else:
+                break
+        
+        # Distinguish the task by its title
+        title_of_task_to_edit = task_to_edit[:search_count - 1]
+
+        print(title_of_task_to_edit)
+        return redirect("/")
 
 # Delete: Users can delete tasks from the master list
 @app.route("/delete", methods=["GET", "POST"])
