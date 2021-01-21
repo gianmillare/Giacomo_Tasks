@@ -186,10 +186,21 @@ def create():
         return redirect("/")
 
 # Edit: Users can select and edit a task
-@app.route("/edit")
+@app.route("/edit", methods=["GET", "POST"])
 @login_required
 def edit():
-    return render_template("edit.html")
+    """ User will be able to select a task, and edit the task """
+    if request.method == "GET":
+
+        # Display a list of tasks that are not reserved vua dropdown
+        rows = c.execute("""
+        SELECT title, score FROM tasks WHERE user_id = 0;
+        """)
+
+        return render_template("edit.html", tasks = [row[0] + " (" + str(row[1]) + ") " for row in rows])
+    else:
+        return redirect("/")
+
 
 # Delete: Users can delete tasks from the master list
 @app.route("/delete", methods=["GET", "POST"])
