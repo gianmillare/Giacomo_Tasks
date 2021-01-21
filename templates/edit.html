@@ -5,5 +5,43 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Users can choose and edit a task</h1>
+    <form action="/edit" method="POST">
+
+        <!-- dropdown menu to select a task to edit -->
+        <div class="form-group">
+            <select id="task_id" class="form-control" name="task_id" required onchange="enableButton()">
+                <option selected value="">Please choose a task</option>
+                {% for task in tasks %}
+                    <option value="{{ task }}">{{ task }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Users have three options to change: Title, Description, and Score -->
+        <!-- If empty, then the existing value will stay the same -->
+        <div class="form-group">
+            <input class="form-control" name="task_title" type="text" placeholder="Change Title">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" name="task_desc" type="text" placeholder="Change Description">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" name="task_score" type="text" placeholder="Change Score">
+        </div>
+
+        <!-- Button to submit the changes made above -->
+        <button class="btn btn-primary" type="submit" id="submit" disabled>Edit Task</button>
+
+    </form>
+
+    <!-- Disable the submit button if no task is selected -->
+    <script>
+        function enableButton() {
+            var selectedItem = document.getElementById('task_id');
+            var buttonElem = document.getElementById('submit');
+            buttonElem.disabled = !selectedItem.value;
+        }
+    </script>
 {% endblock %}
