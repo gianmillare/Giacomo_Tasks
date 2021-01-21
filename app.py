@@ -219,9 +219,10 @@ def edit():
         """, {"title_of_task_to_edit": title_of_task_to_edit})
 
         # Query the old values for the task
-        edit_task_id = c.fetchall()[0][0]
-        old_desc = c.fetchall()[0][1]
-        old_score = c.fetchall()[0][2]
+        rows = c.fetchall()
+        edit_task_id = rows[0][0]
+        old_desc = rows[0][1]
+        old_score = rows[0][2]
 
         # assign each new value from USER to a variable
         title_new = request.form.get("task_title")
