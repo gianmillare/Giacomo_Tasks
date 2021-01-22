@@ -298,8 +298,16 @@ def delete():
 @login_required
 def gym():
     if request.method == "GET":
+        
+        # Query "times" database into a list, featured as a dropdown in gym page
+
+        # A list consisting of AM and PM where User will select the time of day
         return render_template("gym.html")
     else:
+        # Synthesize the times above into a string format, and push into "gym_reserve" database under user_id
+
+        # Push the times into the homepage database
+
         return redirect("/")
 
 # History: Users can view which tasks were completed and at what date/time
