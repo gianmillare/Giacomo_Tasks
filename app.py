@@ -6,6 +6,7 @@ from helpers import login_required
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.wrappers import Response
 from io import StringIO
+import calendar
 
 
 app = Flask(__name__)
@@ -185,7 +186,7 @@ def create():
 
         return redirect("/")
 
-# Edit: Users can select and edit a task
+# (COMPLETED) Edit: Users can select and edit a task
 @app.route("/edit", methods=["GET", "POST"])
 @login_required
 def edit():
@@ -249,7 +250,7 @@ def edit():
 
         return redirect("/")
 
-# Delete: Users can delete tasks from the master list
+# (COMPLETED) Delete: Users can delete tasks from the master list
 @app.route("/delete", methods=["GET", "POST"])
 @login_required
 def delete():
@@ -293,10 +294,13 @@ def delete():
         return redirect("/")
 
 # Gym: Users can reserve an amount of time to use the home gym
-@app.route("/gym") 
+@app.route("/gym", methods=["GET", "POST"]) 
 @login_required
 def gym():
-    return render_template("gym.html")
+    if request.method == "GET":
+        return render_template("gym.html")
+    else:
+        return redirect("/")
 
 # History: Users can view which tasks were completed and at what date/time
 @app.route("/history")
