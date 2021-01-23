@@ -347,6 +347,20 @@ def gym():
                 UPDATE gym_times SET user_id = :user_id WHERE gym_id = :i
                 """, {"user_id": session["user_id"], "i": i})
                 conn.commit()
+        else:
+            # get the times of any reservation that is am-am, pm-pm, or am-pm
+            search_start_time = start[:len(start) - 2]
+            search_start_ampm = start[len(start) - 2:]
+            search_end_time = end[:len(end) - 2]
+            search_end_ampm = end[len(start) - 2:]
+
+            print(search_start_time + search_start_ampm)
+            print(search_end_time + search_end_ampm)
+
+            # # query the gym_id of the time
+            # c.execute("""
+            # SELECT gym_id FROM gym_times WHERE time = :search_start_time AND ampm = :search_start_pm
+            # """, {"search_start_time": search_start_time, "search_start_pm": search_start_pm})
 
         # Push the times into the homepage database
 
