@@ -10,11 +10,13 @@
 
             <!-- User selects a start time from the drop down -->
             <select id="start_gym" class="form-control" name="start_gym" required onchange="enableButton()">
-                <option selected value="">Select a task</option>
+                <option selected value="">Start Time</option>
                 {% for start_time in start_times %}
                     <option value="{{ start_time }}">{{ start_time }}</option>
                 {% endfor %}
             </select>
+
+            <br>
 
             <!-- User selects whether start time is AM or PM -->
             <div class="form-group">

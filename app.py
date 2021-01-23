@@ -302,7 +302,7 @@ def gym():
     if request.method == "GET":    
         # Query "times" database into a list, featured as a dropdown in gym page
         rows = c.execute("""
-        SELECT * FROM start_gym WHERE user_id = 0;
+        SELECT time FROM start_gym WHERE user_id = 0;
         """)
 
         # A list consisting of AM and PM where User will select the time of day
