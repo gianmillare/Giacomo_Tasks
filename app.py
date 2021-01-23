@@ -352,7 +352,7 @@ def gym():
             search_start_time = start[:len(start) - 2]
             search_start_ampm = start[len(start) - 2:]
             search_end_time = end[:len(end) - 2]
-            search_end_ampm = end[len(start) - 2:]
+            search_end_ampm = end[len(end) - 2:]
 
             print(search_start_time + search_start_ampm)
             print(search_end_time + search_end_ampm)
