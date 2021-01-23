@@ -37,9 +37,10 @@
     <!-- Javascript used to disable the button if the values above are empty -->
     <script>
         function enableButton() {
-            var selectedItem = document.getElementById('start_gym');
+            var start = document.getElementById('start_times');
+            var end = document.getElementById('end_times')
             var buttonElem = document.getElementById('submit');
-            buttonElem.disabled = !selectedItem.value;
+            buttonElem.disabled = !start.value && !end.value;
         }
     </script>
 {% endblock %}
