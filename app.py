@@ -301,10 +301,10 @@ def gym():
 
     if request.method == "GET":    
         gym_times = c.execute("""
-        SELECT time FROM gym_times WHERE user_id = 0;
+        SELECT time, ampm FROM gym_times WHERE user_id = 0;
         """)
 
-        return render_template("gym.html", times = [time[0] for time in gym_times])
+        return render_template("gym.html", times = [time[0] + time[1] for time in gym_times])
 
     else:
         # Synthesize the times above into a string format, and push into "gym_reserve" database under user_id

@@ -7,23 +7,25 @@
 {% block main %}
     <form action="/gym" method="POST">
             <div class="form-group">
-
-                <select id="gym_times" class="form-control" name="gym_times" required onchange="enableButton()">
+                <!-- User selects a start time from the drop down -->
+                <select id="start_times" class="form-control" name="start_times" required onchange="enableButton()">
                     <option selected value="">Start Time</option>
                     {% for time in times %}
                         <option value="{{ time }}">{{ time }}</option>
                     {% endfor %}
                 </select>
+
+                <br>
+
+                <!-- User selects a end time from the drop down -->
+                <select id="end_times" class="form-control" name="end_times" required onchange="enableButton()">
+                    <option selected value="">End Time</option>
+                    {% for time in times %}
+                        <option value="{{ time }}">{{ time }}</option>
+                    {% endfor %}
+                </select>
+
             </div>
-            <!-- User selects a start time from the drop down -->
-
-            <!-- User selects whether start time is AM or PM -->
-
-
-            <!-- User selects a end time from the drop down -->
-
-
-            <!-- User selects whether end time is AM or PM -->
 
             <!-- User selects the date that they reserved it -->
 
