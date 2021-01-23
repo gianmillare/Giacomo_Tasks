@@ -376,6 +376,11 @@ def gym():
                 conn.commit()
 
         # Push the times into the homepage database
+        c.execute("""
+        INSERT INTO reserved_gym (user_id, start, end, date) VALUES (?, ?, ?, ?)
+        """, (session["user_id"], start, end, date))
+
+        conn.commit()
 
         return redirect("/")
 
