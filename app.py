@@ -301,12 +301,16 @@ def gym():
 
     if request.method == "GET":    
         # Query "times" database into a list, featured as a dropdown in gym page
-        rows = c.execute("""
+        start_rows = c.execute("""
         SELECT time FROM start_gym WHERE user_id = 0;
         """)
 
+        end_rows = c.execute("""
+        SELECT time FROM end_gym WHERE user_id = 0;
+        """)
+
         # A list consisting of AM and PM where User will select the time of day
-        return render_template("gym.html", start_times = [row[0] for row in rows])
+        return render_template("gym.html", start_times = [row[0] for row in start_rows], end_times = [row[0] for row in end_rows])
 
     else:
         # Synthesize the times above into a string format, and push into "gym_reserve" database under user_id

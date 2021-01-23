@@ -20,17 +20,31 @@
 
             <!-- User selects whether start time is AM or PM -->
             <div class="form-group">
-                <select id="task_score" class="form-control" name="score" required onchange="enableButton()">
+                <select id="am_or_pm" class="form-control" name="am_or_pm" required onchange="enableButton()">
                     <option selected value="">AM or PM?</option>
                     <option value="AM">AM</option>
                     <option value="PM">PM</option>
-
                 </select>
             </div>
 
+            <br>
+
             <!-- User selects a end time from the drop down -->
+            <select id="end_gym" class="form-control" name="end_gym" required onchange="enableButton()">
+                <option selected value="">End Time</option>
+                {% for end_time in end_times %}
+                    <option value="{{ end_time }}">{{ end_time }}</option>
+                {% endfor %}
+            </select>
 
             <!-- User selects whether end time is AM or PM -->
+            <div class="form-group">
+                <select id="am_or_pm2" class="form-control" name="am_or_pm2" required onchange="enableButton()">
+                    <option selected value="">AM or PM?</option>
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
 
             <!-- User selects the date that they reserved it -->
 
