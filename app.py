@@ -313,7 +313,29 @@ def gym():
         date = request.form.get("gym_date")
 
         # format looks like 12:00AM 1:00AM 2021-01-24
+        # if the times are form PM to AM, we need to change user_id using gym_times_id and from end of database to start
+        if start[len(start) - 2:] == 'PM' and end[len(end) - 2:] == 'AM':
+            # start time in the pm
+            search_start_time = start[:len(start) - 2]
+            search_start_pm = start[len(start) - 2:]
 
+            search_end_time = end[:len(end) - 2]
+            search_end_am = end[len(end) - 2:]
+
+            c.execute("""
+            SELECT gym_id FROM gym_times WHERE time = :search_start_time AND ampm = :search_start_pm
+            """, {"search_start_time": search_start_time, "search_start_pm": search_start_pm})
+
+            reserving_pm = c.fetchall()[0][0]
+
+            c.execute("""
+            SELECT gym_id FROM gym_times WHERE time = :search_end_time AND ampm = :search_end_am
+            """, {"search_end_time": search_end_time, "search_end_am": search_end_am})
+
+            reserving_am = c.fetchall()[0][0]
+
+            print(reserving_pm)
+            print(reserving_am)
 
         # Push the times into the homepage database
 
