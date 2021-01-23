@@ -354,13 +354,26 @@ def gym():
             search_end_time = end[:len(end) - 2]
             search_end_ampm = end[len(end) - 2:]
 
-            print(search_start_time + search_start_ampm)
-            print(search_end_time + search_end_ampm)
+            # Query the gym_id of the selected start_time
+            c.execute("""
+            SELECT gym_id FROM gym_times WHERE time = :search_start_time AND ampm = :search_start_ampm
+            """, {"search_start_time": search_start_time, "search_start_ampm": search_start_ampm})
 
-            # # query the gym_id of the time
-            # c.execute("""
-            # SELECT gym_id FROM gym_times WHERE time = :search_start_time AND ampm = :search_start_pm
-            # """, {"search_start_time": search_start_time, "search_start_pm": search_start_pm})
+            reserving_start = c.fetchall()[0][0]
+
+            # Query the gym_id of the selected end_time
+            c.execute("""
+            SELECT gym_id FROM gym_times WHERE time = :search_end_time AND ampm = :search_end_ampm
+            """, {"search_end_time": search_end_time, "search_end_ampm": search_end_ampm})
+
+            reserving_end = c.fetchall()[0][0]
+
+            # Change the user_id of gym_times for reservation
+            for i in range(reserving_start, reserving_end):
+                c.execute("""
+                UPDATE gym_times SET user_id = :user_id WHERE gym_id = :i
+                """, {"user_id": session["user_id"], "i": i})
+                conn.commit()
 
         # Push the times into the homepage database
 
