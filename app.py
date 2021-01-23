@@ -335,12 +335,18 @@ def gym():
             reserving_am = c.fetchall()[0][0]
 
             # All times between the PM to the AM time will set user_id to reserving user
-            for i in range(reserving_pm, 48):
+            for i in range(reserving_pm, 49):
                 c.execute("""
                 UPDATE gym_times SET user_id = :user_id WHERE gym_id = :i
                 """, {"user_id": session["user_id"], "i": i})
                 conn.commit()
 
+            # All times between 12:00am to the end time will set user_id to current user
+            for i in range(1, reserving_am):
+                c.execute("""
+                UPDATE gym_times SET user_id = :user_id WHERE gym_id = :i
+                """, {"user_id": session["user_id"], "i": i})
+                conn.commit()
 
         # Push the times into the homepage database
 
