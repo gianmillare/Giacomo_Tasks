@@ -297,12 +297,17 @@ def delete():
 @app.route("/gym", methods=["GET", "POST"]) 
 @login_required
 def gym():
-    if request.method == "GET":
-        
+    # Users will be able to reserve gym time by selecting times and inputing dates
+
+    if request.method == "GET":    
         # Query "times" database into a list, featured as a dropdown in gym page
+        rows = c.execute("""
+        SELECT * FROM start_gym WHERE user_id = 0;
+        """)
 
         # A list consisting of AM and PM where User will select the time of day
-        return render_template("gym.html")
+        return render_template("gym.html", start_times = [row[0] for row in rows])
+
     else:
         # Synthesize the times above into a string format, and push into "gym_reserve" database under user_id
 

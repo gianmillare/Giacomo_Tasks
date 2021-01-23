@@ -6,21 +6,45 @@
 
 {% block main %}
     <form action="/gym" method="POST">
+        <div class="form-group">
 
-        <!-- User selects a start time from the drop down -->
+            <!-- User selects a start time from the drop down -->
+            <select id="start_gym" class="form-control" name="start_gym" required onchange="enableButton()">
+                <option selected value="">Select a task</option>
+                {% for start_time in start_times %}
+                    <option value="{{ start_time }}">{{ start_time }}</option>
+                {% endfor %}
+            </select>
 
-        <!-- User selects whether start time is AM or PM -->
+            <!-- User selects whether start time is AM or PM -->
+            <div class="form-group">
+                <select id="task_score" class="form-control" name="score" required onchange="enableButton()">
+                    <option selected value="">AM or PM?</option>
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
 
-        <!-- User selects a end time from the drop down -->
+                </select>
+            </div>
 
-        <!-- User selects whether end time is AM or PM -->
+            <!-- User selects a end time from the drop down -->
 
-        <!-- User selects the date that they reserved it -->
+            <!-- User selects whether end time is AM or PM -->
+
+            <!-- User selects the date that they reserved it -->
+
+        </div>
 
         <!-- button to reserve the time slot -->
+        <button class="btn btn-primary" type="submit" id="submit" disabled>Reserve</button>
 
     </form>
 
     <!-- Javascript used to disable the button if the values above are empty -->
-
+    <script>
+        function enableButton() {
+            var selectedItem = document.getElementById('start_gym');
+            var buttonElem = document.getElementById('submit');
+            buttonElem.disabled = !selectedItem.value;
+        }
+    </script>
 {% endblock %}
