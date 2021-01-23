@@ -308,6 +308,12 @@ def gym():
 
     else:
         # Synthesize the times above into a string format, and push into "gym_reserve" database under user_id
+        start = request.form.get("start_times")
+        end = request.form.get("end_times")
+        date = request.form.get("gym_date")
+
+        # format looks like 12:00AM 1:00AM 2021-01-24
+
 
         # Push the times into the homepage database
 
