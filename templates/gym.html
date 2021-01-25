@@ -6,38 +6,32 @@
 
 {% block main %}
     <form action="/gym" method="POST">
-            <div class="form-group">
+            <div class="mb-3">
                 <!-- User selects a start time from the drop down -->
-                <select id="start_times" class="form-control" name="start_times" required>
+                <select id="start_times" class="form-select form-select-lg mb-3" name="start_times" required>
                     <option selected value="">Start Time</option>
                     {% for time in times %}
                         <option value="{{ time }}">{{ time }}</option>
                     {% endfor %}
                 </select>
 
-                <br>
-
                 <!-- User selects a end time from the drop down -->
-                <select id="end_times" class="form-control" name="end_times" required>
+                <select id="end_times" class="form-select form-select-lg mb-3" name="end_times" required>
                     <option selected value="">End Time</option>
                     {% for time in times %}
                         <option value="{{ time }}">{{ time }}</option>
                     {% endfor %}
                 </select>
 
-                <br>
-
             </div>
 
             <!-- User selects the date that they reserved it -->
-            <div class="form-group">
+            <div class="mb-3">
                 <input type="date" id="gym_date" name="gym_date" required onchange="enableButton()">
             </div>
 
-            <br>
-
         <!-- button to reserve the time slot -->
-        <button class="btn btn-primary" type="submit" id="submit" disabled>Reserve</button>
+        <button class="btn btn-primary btn-lg" type="submit" id="submit" disabled>Reserve</button>
 
     </form>
 
