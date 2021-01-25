@@ -6,8 +6,8 @@
 
 {% block main %}
     <form action="/reserve" method="POST">
-        <div class="form-group">
-            <select id="task_list" class="form-control" name="task_item" required onchange="enableButton()">
+        <div class="mb-3">
+            <select id="task_list" class="form-select form-select-lg mb-3" name="task_item" required onchange="enableButton()">
                 <option selected value="">Select a task</option>
                 {% for task in tasks %}
                     <option value="{{ task }}">{{ task }}</option>
@@ -15,9 +15,7 @@
             </select>
         </div>
 
-        <br>
-
-        <button class="btn btn-primary" type="submit" id="submit" disabled>Reserve</button>
+        <button class="btn btn-primary btn-lg" type="submit" id="submit" disabled>Reserve</button>
 
     </form>
 
