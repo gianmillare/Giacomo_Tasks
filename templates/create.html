@@ -8,22 +8,18 @@
     <form action="/create" method="POST">
 
         <!-- User will enter a title -->
-        <div class="form-group">
-            <input class="form-control" id="task_title" name="title" onkeyup="enableButton()" type="text" placeholder="Title" autofocus>
+        <div class="mb-3">
+            <input class="form-control form-control-lg" id="task_title" name="title" onkeyup="enableButton()" type="text" placeholder="Title" autofocus>
         </div>
-
-        <br>
 
         <!-- User will enter a description of the task -->
-        <div class="form-group">
-            <input class="form-control" id="task_desc" name="description" onkeyup="enableButton()" type="text" placeholder="Description">
+        <div class="mb-3">
+            <input class="form-control form-control-lg" id="task_desc" name="description" onkeyup="enableButton()" type="text" placeholder="Description">
         </div>
 
-        <br>
-
         <!-- User will select a difficulty for the task (this is also the score they receive on completion) -->
-        <div class="form-group">
-            <select id="task_score" class="form-control" name="score" required onchange="enableButton()">
+        <div class="mb-3">
+            <select id="task_score" class="form-select form-select-lg mb-3" name="score" required onchange="enableButton()">
                 <option selected value="">Difficulty</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -33,10 +29,8 @@
             </select>
         </div>
 
-        <br>
-
         <!-- User clicks button to submit the new task -->
-        <button class="btn btn-primary" type="submit" id="submit" disabled>Create Task</button>
+        <button class="btn btn-primary btn-lg" type="submit" id="submit" disabled>Create Task</button>
 
     </form>
 
