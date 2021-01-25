@@ -16,16 +16,19 @@
                 {% endfor %}
             </select>
         </div>
+        <br>
 
         <!-- Users have three options to change: Title, Description, and Score -->
         <!-- If empty, then the existing value will stay the same -->
         <div class="form-group">
             <input class="form-control" name="task_title" type="text" placeholder="Change Title">
         </div>
+        <br>
 
         <div class="form-group">
             <input class="form-control" name="task_desc" type="text" placeholder="Change Description">
         </div>
+        <br>
 
         <div class="form-group">
             <select id="task_score" class="form-control" name="task_score" required onchange="enableButton()">
@@ -37,6 +40,7 @@
                 <option value="5">5</option>
             </select>
         </div>
+        <br>
 
         <!-- Button to submit the changes made above -->
         <button class="btn btn-primary" type="submit" id="submit" disabled>Edit Task</button>

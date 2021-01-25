@@ -12,10 +12,14 @@
             <input class="form-control" id="task_title" name="title" onkeyup="enableButton()" type="text" placeholder="Title" autofocus>
         </div>
 
+        <br>
+
         <!-- User will enter a description of the task -->
         <div class="form-group">
             <input class="form-control" id="task_desc" name="description" onkeyup="enableButton()" type="text" placeholder="Description">
         </div>
+
+        <br>
 
         <!-- User will select a difficulty for the task (this is also the score they receive on completion) -->
         <div class="form-group">
@@ -28,6 +32,8 @@
                 <option value="5">5</option>
             </select>
         </div>
+
+        <br>
 
         <!-- User clicks button to submit the new task -->
         <button class="btn btn-primary" type="submit" id="submit" disabled>Create Task</button>

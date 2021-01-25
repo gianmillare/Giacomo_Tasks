@@ -25,12 +25,16 @@
                     {% endfor %}
                 </select>
 
+                <br>
+
             </div>
 
             <!-- User selects the date that they reserved it -->
             <div class="form-group">
                 <input type="date" id="gym_date" name="gym_date" required onchange="enableButton()">
             </div>
+
+            <br>
 
         <!-- button to reserve the time slot -->
         <button class="btn btn-primary" type="submit" id="submit" disabled>Reserve</button>
