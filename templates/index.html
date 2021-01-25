@@ -5,12 +5,32 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Tasks assigned to you:</h1>
+    <h1>Welcome to Giacomo!</h1>
+
+    <div class="col-6">
+
+        <table class="table table-bordered">
+        
+            <thead>
+                <tr class="table table-primary">
+                    <th scope="col">Announcements</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <tr>
+                    <td scope="row">Testing</th>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    
+    <!-- <h1>Tasks assigned to you:</h1>
     <br>
     <div class="col-12">
         <table class="table table-striped">
 
-            <!-- Header -->
             <thead>
                 <tr>
                     <th>Title</th>
@@ -20,7 +40,6 @@
             </thead>
 
             <tbody>
-                <!-- Tasks -->
                 {% for i in user_reserved_tasks %}
                 <tr>
                     <td>{{ i["title"] }}</td>
@@ -30,5 +49,5 @@
                 {% endfor %}
             </tbody>
         </table>
-    </div>
+    </div> -->
 {% endblock %}
