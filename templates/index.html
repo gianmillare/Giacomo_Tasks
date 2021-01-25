@@ -23,15 +23,15 @@
                 <tbody>
                     
                     <tr>
-                        <td scope="row">Anjanette's Birthday is on February 26th!</th>
+                        <td scope="row">Anjanette's Birthday is on February 26th!</td>
                     </tr>
     
                     <tr>
-                        <td scope="row">Kevin's Birthday is on February 28th!</th>
+                        <td scope="row">Kevin's Birthday is on February 28th!</td>
                     </tr>
     
                     <tr>
-                        <td scope="row">Gian was officially promoted to a Data Scientist / Analyst. Congrats!</th>
+                        <td scope="row">Gian was officially promoted to a Data Scientist / Analyst. Congrats!</td>
                     </tr>
     
                 </tbody>
@@ -54,9 +54,59 @@
     
                 <tbody>
                     <tr>
-                        <td scope="row">Testing Title</th>
-                        <td scope="row">Testing Description</th>
-                        <td scope="row">Testing Difficulty & Score</th>
+                        <td scope="row">Testing Title</td>
+                        <td scope="row">Testing Description</td>
+                        <td scope="row">Testing Difficulty & Score</td>
+                    </tr>
+                </tbody>
+            </table>
+    
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <!-- List of Reserved Gym Times -->
+        <div class="col-6">
+
+            <table class="table table-bordered caption-top">
+                <caption>Reserved Gym Times</caption>
+                <thead class="table-success">
+                    <tr>
+                        <th scope="col" style="font-size: large; text-align: center;">Name</th>
+                        <th scope="col" style="font-size: large; text-align: center;">Start</th>
+                        <th scope="col" style="font-size: large; text-align: center;">End</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    
+                    <tr>
+                        <td scope="row">User's name.</td>
+                        <td scope="row">User's start time.</td>
+                        <td scope="row">User's end time.</td>
+                    </tr>
+    
+                </tbody>
+            </table>
+    
+        </div>
+    
+        <!-- List out the Grocery List -->
+        <div class="col-6">
+    
+            <table class="table table-bordered caption-top">
+                <caption>House Groceries</caption>
+                <thead class="table-warning">
+                    <tr>
+                        <th scope="col" style="font-size: large; text-align: center;">Grocery List</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <tr>
+                        <td scope="row">User's will list out items needed to purchase for the house.</td>
                     </tr>
                 </tbody>
             </table>
@@ -65,28 +115,4 @@
 
     </div>
     
-    <!-- <h1>Tasks assigned to you:</h1>
-    <br>
-    <div class="col-12">
-        <table class="table table-striped">
-
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Score</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {% for i in user_reserved_tasks %}
-                <tr>
-                    <td>{{ i["title"] }}</td>
-                    <td>{{ i["description"] }}</td>
-                    <td>{{ i["score"] }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div> -->
 {% endblock %}
