@@ -14,9 +14,9 @@
 
             <table class="table table-bordered caption-top">
                 <caption>Announcements & Reminders</caption>
-                <thead class="table-primary">
+                <thead class="table-danger">
                     <tr>
-                        <th scope="col" style="font-size: large; text-align: center;">Announcement</th>
+                        <th scope="col" style="font-size: large; text-align: center;">Announcements</th>
                     </tr>
                 </thead>
         
@@ -39,8 +39,37 @@
     
         </div>
     
-        <!-- List out the Reserved Tasks -->
+        <!-- List of Reserved Gym Times -->
         <div class="col-6">
+
+            <table class="table table-bordered caption-top">
+                <caption>Reserved Gym Times</caption>
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col" style="font-size: large; text-align: center;">Name</th>
+                        <th scope="col" style="font-size: large; text-align: center;">Start</th>
+                        <th scope="col" style="font-size: large; text-align: center;">End</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    
+                    <tr>
+                        <td scope="row">User's name.</td>
+                        <td scope="row">User's start time.</td>
+                        <td scope="row">User's end time.</td>
+                    </tr>
+    
+                </tbody>
+            </table>
+    
+        </div>
+
+    </div>
+
+    <div class="row">
+        <!-- List out the Reserved Tasks -->
+        <div class="col-12">
     
             <table class="table table-bordered caption-top">
                 <caption>Reserved Tasks</caption>
@@ -62,43 +91,16 @@
             </table>
     
         </div>
-
     </div>
 
     <div class="row">
-
-        <!-- List of Reserved Gym Times -->
-        <div class="col-6">
-
-            <table class="table table-bordered caption-top">
-                <caption>Reserved Gym Times</caption>
-                <thead class="table-success">
-                    <tr>
-                        <th scope="col" style="font-size: large; text-align: center;">Name</th>
-                        <th scope="col" style="font-size: large; text-align: center;">Start</th>
-                        <th scope="col" style="font-size: large; text-align: center;">End</th>
-                    </tr>
-                </thead>
-        
-                <tbody>
-                    
-                    <tr>
-                        <td scope="row">User's name.</td>
-                        <td scope="row">User's start time.</td>
-                        <td scope="row">User's end time.</td>
-                    </tr>
-    
-                </tbody>
-            </table>
-    
-        </div>
     
         <!-- List out the Grocery List -->
         <div class="col-6">
     
             <table class="table table-bordered caption-top">
                 <caption>House Groceries</caption>
-                <thead class="table-warning">
+                <thead class="table-success">
                     <tr>
                         <th scope="col" style="font-size: large; text-align: center;">Grocery List</th>
                     </tr>
@@ -113,6 +115,32 @@
     
         </div>
 
-    </div>
+        <!-- List of important contacts for the house -->
+        <div class="col-6">
     
+            <table class="table table-bordered caption-top">
+                <caption>Contact List</caption>
+                <thead class="table-info">
+                    <tr>
+                        <th scope="col" style="font-size: large; text-align: center;">Name</th>
+                        <th scope="col" style="font-size: large; text-align: center;">Phone Number</th>
+                        <th scope="col" style="font-size: large; text-align: center;">Email Address</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <tr>
+                        <td scope="row">Contact full name.</td>
+                        <td scope="row">Contact phone number.</td>
+                        <td scope="row">Contact email address.</td>
+                    </tr>
+                </tbody>
+            </table>
+    
+        </div>
+
+    </div>
+
+
+
 {% endblock %}
