@@ -131,11 +131,13 @@
                 </thead>
     
                 <tbody>
+                    {% for i in contact_info %}
                     <tr>
-                        <td scope="row">Contact full name.</td>
-                        <td scope="row">Contact phone number.</td>
-                        <td scope="row">Contact email address.</td>
+                        <td>{{ i["name"] }}</td>
+                        <td>{{ i["phone"] }}</td>
+                        <td>{{ i["email"] }}</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
     
