@@ -73,6 +73,8 @@ def login():
 def index():
     """ Show all reserved tasks. Prospective: show weekly score. show reserved gym time """
 
+    # ------------ DISPLAY THE RESERVED TASKS SPECIFIC TO THE USER --------------------
+
     # Query the reserved list for the specific user.
     c.execute("""
     SELECT title, description, score FROM reserved WHERE user_id = :user_id
@@ -97,8 +99,34 @@ def index():
             "description": "Your Task list is empty. Please go to Reserve to assign tasks.",
             "score": 0
         }]
+    
+    # ------------ DISPLAY THE RESERVED GYM TIMES OF EVERYONE --------------------
 
-    return render_template("index.html", user_reserved_tasks=user_reserved_tasks)
+    # Query the user_id, start, end, and date of the reserved_gym database
+    c.execute("""
+    SELECT user_id, date, start, end FROM reserved_gym;
+    """)
+    reserved_gym_query = c.fetchall()
+
+    gym_reserved_table = []
+
+    for row in reserved_gym_query:
+        gym_reserved_table.append({
+            "user_id": row[0],
+            "date": row[1],
+            "start": row[2],
+            "end": row[3]
+        })
+    
+    if len(gym_reserved_table) == 0:
+        gym_reserved_table = [{
+            "user_id": "None",
+            "date": "None",
+            "start": "None",
+            "end": "None"
+        }]
+
+    return render_template("index.html", user_reserved_tasks=user_reserved_tasks, gym_reserved_table=gym_reserved_table)
 
 # (COMPLETED) Reserve: Users can assign certain tasks to themselves
 @app.route("/reserve", methods=["GET", "POST"])
@@ -311,6 +339,11 @@ def gym():
         start = request.form.get("start_times")
         end = request.form.get("end_times")
         date = request.form.get("gym_date")
+
+        # query the number of times the user appears in reserved_gym, if less than 3, they may reserve more dates
+        # count_of_reservations = c.execute("""
+        # SELECT
+        # """)
 
         # format looks like 12:00AM 1:00AM 2021-01-24
         # if the times are form PM to AM, we need to change user_id using gym_times_id and from end of database to start

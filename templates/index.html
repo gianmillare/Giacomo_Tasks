@@ -47,19 +47,21 @@
                 <thead class="table-primary">
                     <tr>
                         <th scope="col" style="font-size: large; text-align: center;">Name</th>
+                        <th scope="col" style="font-size: large; text-align: center;">Date</th>
                         <th scope="col" style="font-size: large; text-align: center;">Start</th>
                         <th scope="col" style="font-size: large; text-align: center;">End</th>
                     </tr>
                 </thead>
         
                 <tbody>
-                    
+                    {% for i in gym_reserved_table %}
                     <tr>
-                        <td scope="row">User's name.</td>
-                        <td scope="row">User's start time.</td>
-                        <td scope="row">User's end time.</td>
+                        <td>{{ i["user_id"] }}</td>
+                        <td>{{ i["date"] }}</td>
+                        <td>{{ i["start"] }}</td>
+                        <td>{{ i["end"] }}</td>
                     </tr>
-    
+                    {% endfor %}
                 </tbody>
             </table>
     
