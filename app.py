@@ -102,31 +102,7 @@ def index():
     
     # ------------ DISPLAY THE RESERVED GYM TIMES OF EVERYONE --------------------
 
-    # Query the user_id, start, end, and date of the reserved_gym database
-    c.execute("""
-    SELECT user_id, date, start, end FROM reserved_gym;
-    """)
-    reserved_gym_query = c.fetchall()
-
-    gym_reserved_table = []
-
-    for row in reserved_gym_query:
-        gym_reserved_table.append({
-            "user_id": row[0],
-            "date": row[1],
-            "start": row[2],
-            "end": row[3]
-        })
-    
-    if len(gym_reserved_table) == 0:
-        gym_reserved_table = [{
-            "user_id": "None",
-            "date": "None",
-            "start": "None",
-            "end": "None"
-        }]
-
-    return render_template("index.html", user_reserved_tasks=user_reserved_tasks, gym_reserved_table=gym_reserved_table)
+    return render_template("index.html", user_reserved_tasks=user_reserved_tasks)
 
 # (COMPLETED) Reserve: Users can assign certain tasks to themselves
 @app.route("/reserve", methods=["GET", "POST"])

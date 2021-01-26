@@ -54,14 +54,12 @@
                 </thead>
         
                 <tbody>
-                    {% for i in gym_reserved_table %}
                     <tr>
-                        <td>{{ i["user_id"] }}</td>
-                        <td>{{ i["date"] }}</td>
-                        <td>{{ i["start"] }}</td>
-                        <td>{{ i["end"] }}</td>
+                        <td scope="row">User's name</td>
+                        <td scope="row">User's reserved date</td>
+                        <td scope="row">User's start time</td>
+                        <td scope="row">User's end time</td>
                     </tr>
-                    {% endfor %}
                 </tbody>
             </table>
     
@@ -112,7 +110,7 @@
     
                 <tbody>
                     <tr>
-                        <td scope="row">User's will list out items needed to purchase for the house.</td>
+                        <td scope="row">User's will list out grocery item(s) for the house.</td>
                     </tr>
                 </tbody>
             </table>
