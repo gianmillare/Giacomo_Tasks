@@ -411,12 +411,6 @@ def gym():
 
         return redirect("/")
 
-# History: Users can view which tasks were completed and at what date/time
-@app.route("/history")
-@login_required
-def history():
-    return render_template("history.html")
-
 # Logout Function
 @app.route("/logout")
 def logout():
