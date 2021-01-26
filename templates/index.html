@@ -82,11 +82,13 @@
                 </thead>
     
                 <tbody>
+                    {% for i in user_reserved_tasks %}
                     <tr>
-                        <td scope="row">Testing Title</td>
-                        <td scope="row">Testing Description</td>
-                        <td scope="row">Testing Difficulty & Score</td>
+                        <td>{{ i["title"] }}</td>
+                        <td>{{ i["description"] }}</td>
+                        <td>{{ i["score"] }}</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
     
