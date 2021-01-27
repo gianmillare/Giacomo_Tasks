@@ -427,8 +427,19 @@ def gym():
 @app.route("/add_grocery", methods=["GET", "POST"])
 def add_grocery():
     """ Users can add grocery item(s) to the grocery list for all housemates to see """
+
     if request.method == "GET":
         return render_template("add_grocery.html")
+    
+    else:
+        item_to_add = request.form.get("add_item")
+
+        c.execute("""
+        INSERT INTO groceries (user_id, item) VALUES (:user_id, :item_to_add)
+        """, {"user_id": session["user_id"], "item_to_add": item_to_add})
+        conn.commit()
+
+        return redirect("/")
 
 # Logout Function
 @app.route("/logout")
