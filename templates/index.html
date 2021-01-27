@@ -110,14 +110,14 @@
                 <caption>House Groceries</caption>
                 <thead class="table-success">
                     <tr>
-                        <th scope="col" style="font-size: large; text-align: center;">Grocery List<a href="#" style="float: right;" class="btn btn-primary btn-sm" role="button">+</a></th>
+                        <th scope="col" style="font-size: large; text-align: center;">Grocery List<a href="/add_grocery" style="float: right;" class="btn btn-primary btn-sm" role="button">+</a></th>
                     </tr>
                 </thead>
     
                 <tbody>
                     {% for i in items %}
                     <tr style="text-align: center;">
-                        <td>{{ i['item'] }}</td>
+                        <td>{{ i['item'] }}<a href="#" style="float: right;" class="btn btn-danger btn-sm" role="button">-</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

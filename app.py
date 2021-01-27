@@ -1,5 +1,5 @@
 # Dependencies
-from flask import Flask, render_template, redirect, request, session
+from flask import Flask, render_template, redirect, request, session, flash
 from flask_session import Session
 import sqlite3
 from helpers import login_required
@@ -72,8 +72,6 @@ def login():
 @login_required
 def index():
     """ Show all reserved tasks. Prospective: show weekly score. show reserved gym time """
-
-    if request.method == "GET":
     # ------------ DISPLAY THE RESERVED TASKS SPECIFIC TO THE USER --------------------
 
     # Query the reserved list for the specific user.
@@ -440,6 +438,24 @@ def add_grocery():
         conn.commit()
 
         return redirect("/")
+
+# Delete a grocery item
+@app.route("/delete_grocery", methods=["POST"])
+def delete_grocery():
+    """ User can delete an item from the grocery list """
+
+    if request.method == "POST":
+
+        item_to_delete = request.form.get("item_to_delete")
+
+        c.execute("""
+        DELETE FROM groceries WHERE item = :item_to_delete
+        """, {"item_to_delete": item_to_delete})
+
+        conn.commit()
+
+        return redirect("/")
+
 
 # Logout Function
 @app.route("/logout")
