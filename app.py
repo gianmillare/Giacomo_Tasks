@@ -103,6 +103,17 @@ def index():
     # ------------ DISPLAY THE RESERVED GYM TIMES OF EVERYONE --------------------
 
     # ------------ DISPLAY THE GROCERY LIST --------------------
+    c.execute("""
+    SELECT item from groceries
+    """)
+    results = c.fetchall()
+
+    items = []
+
+    for i in results:
+        items.append({
+            'item': i[0]
+        })
 
     # ------------ DISPLAY THE LIST OF IMPORTANT CONTACTS --------------------
     c.execute("""
@@ -120,7 +131,7 @@ def index():
             'email': i[2]
         })
 
-    return render_template("index.html", user_reserved_tasks=user_reserved_tasks, contact_info=contact_info)
+    return render_template("index.html", user_reserved_tasks=user_reserved_tasks, items=items, contact_info=contact_info)
 
 # (COMPLETED) Reserve: Users can assign certain tasks to themselves
 @app.route("/reserve", methods=["GET", "POST"])
