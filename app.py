@@ -68,11 +68,12 @@ def login():
         return redirect("/")
 
 # (COMPLETED) Homepage where users can see which tasks are assigned to them
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
     """ Show all reserved tasks. Prospective: show weekly score. show reserved gym time """
 
+    if request.method == "GET":
     # ------------ DISPLAY THE RESERVED TASKS SPECIFIC TO THE USER --------------------
 
     # Query the reserved list for the specific user.
@@ -421,6 +422,13 @@ def gym():
         conn.commit()
 
         return redirect("/")
+
+# Add grocery item
+@app.route("/add_grocery", methods=["GET", "POST"])
+def add_grocery():
+    """ Users can add grocery item(s) to the grocery list for all housemates to see """
+    if request.method == "GET":
+        return render_template("add_grocery.html")
 
 # Logout Function
 @app.route("/logout")
