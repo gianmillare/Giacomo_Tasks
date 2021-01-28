@@ -115,9 +115,9 @@
                 </thead>
     
                 <tbody>
-                    {% for i in items %}
+                    {% for item in items %}
                     <tr style="text-align: center;">
-                        <td>{{ i['item'] }}</td>
+                        <td>{{ item.item }} <form method="POST" action="{{ url_for('delete_grocery', item_id=item.item_id) }}"><input class="btn" type="submit" name="delete" value="Delete"></form> </td>
                     </tr>
                     {% endfor %}
                 </tbody>

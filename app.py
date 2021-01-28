@@ -103,7 +103,7 @@ def index():
 
     # ------------ DISPLAY THE GROCERY LIST --------------------
     c.execute("""
-    SELECT item from groceries
+    SELECT item_id, item from groceries
     """)
     results = c.fetchall()
 
@@ -111,7 +111,8 @@ def index():
 
     for i in results:
         items.append({
-            'item': i[0]
+            'item_id': i[0],
+            'item':i[1]
         })
 
     # ------------ DISPLAY THE LIST OF IMPORTANT CONTACTS --------------------
@@ -423,6 +424,7 @@ def gym():
 
 # Add grocery item
 @app.route("/add_grocery", methods=["GET", "POST"])
+@login_required
 def add_grocery():
     """ Users can add grocery item(s) to the grocery list for all housemates to see """
 
@@ -438,6 +440,14 @@ def add_grocery():
         conn.commit()
 
         return redirect("/")
+
+# Delete grocery item
+# @app.route("/delete/<item_id>", methods=['POST'])
+# @login_required
+# def delete_grocery(item_id):
+#     """ User is able to delete a grocery item via button """
+#     item = 
+
 
 # Logout Function
 @app.route("/logout")
