@@ -442,11 +442,18 @@ def add_grocery():
         return redirect("/")
 
 # Delete grocery item
-# @app.route("/delete/<item_id>", methods=['POST'])
-# @login_required
-# def delete_grocery(item_id):
-#     """ User is able to delete a grocery item via button """
-#     item = 
+@app.route("/delete/<item_id>", methods=['POST'])
+@login_required
+def delete_grocery(item_id):
+    """ User is able to delete a grocery item via button """
+    
+    c.execute("""
+    DELETE FROM groceries WHERE item_id = :item_id
+    """, {"item_id": item_id})
+
+    conn.commit()
+
+    return redirect("/")
 
 
 # Logout Function
