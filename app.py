@@ -100,6 +100,30 @@ def index():
             "description": "Your Task list is empty. Please go to Reserve to assign tasks.",
             "score": 0
         }]
+
+    # ------------ DISPLAY THE COMPLETED TASKS UNDER THE RESERVED TASKS --------------------
+
+    # Query the completed_tasks database with user_id
+    c.execute("""
+    SELECT title, score, completed_on FROM completed_tasks WHERE user_id = :user_id
+    """, {"user_id": session["user_id"]})
+
+    rows = c.fetchall()
+    user_completed_tasks = []
+
+    for row in rows:
+        user_completed_tasks.append({
+            "title": row[0],
+            "score": row[1],
+            "completed_on": row[2]
+        })
+    
+    if len(user_completed_tasks) == 0:
+        user_completed_tasks = [{
+            "title": "---",
+            "score": 0,
+            "completed_on": "---"
+        }]
     
     # ------------ DISPLAY THE RESERVED GYM TIMES OF EVERYONE --------------------
 
@@ -133,7 +157,7 @@ def index():
             'email': i[2]
         })
 
-    return render_template("index.html", user_reserved_tasks=user_reserved_tasks, items=items, contact_info=contact_info)
+    return render_template("index.html", user_reserved_tasks=user_reserved_tasks, items=items, user_completed_tasks=user_completed_tasks, contact_info=contact_info)
 
 # (COMPLETED) Reserve: Users can assign certain tasks to themselves
 @app.route("/reserve", methods=["GET", "POST"])
