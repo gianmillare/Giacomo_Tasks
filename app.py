@@ -471,4 +471,6 @@ def logout():
     """ User's option to logout of the app """
 
     session.clear()
+    flash("You have successfully logged out!", "info")
+    
     return redirect("/")
