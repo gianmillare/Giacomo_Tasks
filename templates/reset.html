@@ -5,6 +5,17 @@
 {% endblock %}
 
 {% block main %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <div class="alert alert-danger" role="alert" style="text-align: center;">
+                {{msg}}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
 <form action="/reset" method="POST">
 
     <!-- User must answer if it is Sunday Evening -->

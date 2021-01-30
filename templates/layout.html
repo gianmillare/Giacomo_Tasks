@@ -47,16 +47,6 @@
             </div>
         </nav>
 
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for msg in messages %}
-                    <div class="alert alert-danger" role="alert" style="text-align: center;">
-                        {{msg}}
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-
         <!-- Main body -->
         <main class="container p-5">
             {% block main %}{% endblock %}

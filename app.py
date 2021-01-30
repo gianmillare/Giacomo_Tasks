@@ -464,6 +464,21 @@ def reset():
         flash("Caution: Resetting will remove all reserved tasks from everyone!")
         return render_template("reset.html")
     else:
+        # if both submissions are Yes, then clear the reserved task list, and set all tasks in database to user_id = 0
+        if request.form.get("confirm_sunday") == "Yes" and request.form.get("all_complete") == "Yes":
+
+            c.execute("""
+            DELETE FROM reserved
+            """)
+            conn.commit()
+        
+            c.execute("""
+            UPDATE tasks SET user_id = 0 WHERE user_id != 0
+            """)
+            conn.commit()
+        
+        flash("Reset successful!")
+
         return redirect("/")
 
 # Logout Function
