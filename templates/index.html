@@ -81,14 +81,19 @@
                     <tr>
                         <th scope="col" style="font-size: large; text-align: center;">Title</th>
                         <th scope="col" style="font-size: large; text-align: center;">Description</th>
-                        <th scope="col" style="font-size: large; text-align: center;">Difficulty & Score</th>
+                        <th scope="col" style="font-size: large; text-align: center;">Score</th>
                     </tr>
                 </thead>
     
                 <tbody>
                     {% for i in user_reserved_tasks %}
                     <tr>
-                        <td>{{ i["title"] }}</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">i["title"] }}</label>
+                            </div>
+                        </td>
                         <td>{{ i["description"] }}</td>
                         <td>{{ i["score"] }}</td>
                     </tr>
