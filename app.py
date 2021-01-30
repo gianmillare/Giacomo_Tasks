@@ -455,6 +455,15 @@ def delete_grocery(item_id):
 
     return redirect("/")
 
+# Reset the week
+@app.route("/reset", methods=["GET", "POST"])
+@login_required
+def reset():
+    """ Users are able to reset the reserved tasks list where everyone will now have no tasks reserved """
+    if request.method == "GET":
+        return render_template("reset.html")
+    else:
+        return redirect("/")
 
 # Logout Function
 @app.route("/logout")
