@@ -87,11 +87,11 @@
     
                 <tbody>
                     {% for i in user_reserved_tasks %}
-                    <tr>
+                    <tr class="task_row">
                         <td>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">i["title"] }}</label>
+                                <label class="form-check-label" for="flexCheckDefault">{{ i["title"] }}</label>
                             </div>
                         </td>
                         <td>{{ i["description"] }}</td>
@@ -109,7 +109,7 @@
     <div class="row">
     
         <!-- List out the Grocery List -->
-        <div class="col-4">
+        <div class="col-3">
     
             <table class="table table-bordered caption-top">
                 <caption>House Groceries</caption>
@@ -131,7 +131,7 @@
         </div>
 
         <!-- List of important contacts for the house -->
-        <div class="col-8">
+        <div class="col-9">
     
             <table class="table table-bordered caption-top">
                 <caption>Contact List</caption>
