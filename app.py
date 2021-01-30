@@ -199,6 +199,19 @@ def reserve():
 
         return redirect("/")
 
+# Complete Task: Users can complete a task and move it to a completed table for records of the week
+@app.route("/delete/<reserve_id>", methods=["GET", "POST"])
+@login_required
+def complete_task(reserve_id):
+    """ User will complete a task, remove it from reserved, and move to completed database """
+    
+    c.execute("""
+    DELETE FROM reserved WHERE reserve_id = :reserve_id
+    """, {"reserve_id": reserve_id})
+
+    conn.commit()
+
+    return redirect("/")
 
 
 # (COMPLETED) Create: Users can create a task to add to the master list
