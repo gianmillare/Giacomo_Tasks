@@ -110,6 +110,33 @@
         </div>
     </div>
 
+    <!-- List out the completed tasks -->
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered caption-top">
+                <caption>Completed Tasks</caption>
+                
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col" style="font-size: large; text-align: center;">Title</th>
+                        <th scope="col" style="font-size: large; text-align: center;">Score</th>
+                        <th scope="col" style="font-size: large; text-align: center;">Completed On</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for i in user_completed_tasks %}
+                    <tr>
+                        <td>{{ i["title"] }}</td>
+                        <td>{{ i["score"] }}</td>
+                        <td>{{ i["completed_on"] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <div class="row">
     
         <!-- List out the Grocery List -->
