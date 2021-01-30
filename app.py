@@ -256,6 +256,7 @@ def create():
         c.execute("INSERT INTO tasks (title, description, score) VALUES (?, ?, ?)",
                     (title, description, score))
         conn.commit()
+        flash("New Task successfully created. It is viewable and reservable under 'Reserve'. ")
 
         return redirect("/")
 
@@ -321,6 +322,8 @@ def edit():
 
         conn.commit()
 
+        flash("Task successfully edited!")
+
         return redirect("/")
 
 # (COMPLETED) Delete: Users can delete tasks from the master list
@@ -363,6 +366,8 @@ def delete():
         DELETE FROM tasks WHERE task_id = :task_id_to_delete;  
         """, {"task_id_to_delete": task_id_to_delete})
         conn.commit()
+
+        flash("Task successfully deleted!")
 
         return redirect("/")
 
