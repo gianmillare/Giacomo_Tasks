@@ -92,14 +92,6 @@ def index():
             "description": row[2],
             "score": row[3]
         })
-    
-    if len(user_reserved_tasks) == 0:
-        user_reserved_tasks = [{
-            "reserve_id": 0,
-            "title": "---",
-            "description": "Your Task list is empty. Please go to Reserve to assign tasks.",
-            "score": 0
-        }]
 
     # ------------ DISPLAY THE COMPLETED TASKS UNDER THE RESERVED TASKS --------------------
 
@@ -117,13 +109,6 @@ def index():
             "score": row[1],
             "completed_on": row[2]
         })
-    
-    if len(user_completed_tasks) == 0:
-        user_completed_tasks = [{
-            "title": "---",
-            "score": 0,
-            "completed_on": "---"
-        }]
     
     # ------------ DISPLAY THE RESERVED GYM TIMES OF EVERYONE --------------------
 
@@ -228,7 +213,7 @@ def reserve():
         return redirect("/")
 
 # Complete Task: Users can complete a task and move it to a completed table for records of the week
-@app.route("/delete/<reserve_id>", methods=["POST"])
+@app.route("/complete/<reserve_id>", methods=["POST"])
 @login_required
 def complete_task(reserve_id):
     """ User will complete a task, remove it from reserved, and move to completed database """
