@@ -461,6 +461,7 @@ def delete_grocery(item_id):
 def reset():
     """ Users are able to reset the reserved tasks list where everyone will now have no tasks reserved """
     if request.method == "GET":
+        flash("Caution: Resetting will remove all reserved tasks from everyone!")
         return render_template("reset.html")
     else:
         return redirect("/")
@@ -471,6 +472,4 @@ def logout():
     """ User's option to logout of the app """
 
     session.clear()
-    flash("You have successfully logged out!", "info")
-    
-    return redirect("/")
+    return redirect("/login")

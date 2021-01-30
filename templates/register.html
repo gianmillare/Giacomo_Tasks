@@ -8,27 +8,27 @@
     <form action="/register" method="POST">
         
         <!-- user will enter their name -->
-        <div class="form-group">
-            <input name="name" type="text" class="form-control" placeholder="Enter your name" autocomplete="off" autofocus>
+        <div class="mb-3">
+            <input name="name" type="text" class="form-control form-control-lg" placeholder="Enter your name" autocomplete="off" autofocus>
         </div>
 
         <!-- user will enter their username -->
-        <div class="form-group">
-            <input name="username" type="text" class="form-control" placeholder="Enter your desired username" autocomplete="off">
+        <div class="mb-3">
+            <input name="username" type="text" class="form-control form-control-lg" placeholder="Enter your desired username" autocomplete="off">
         </div>
 
         <!-- user will enter their password -->
-        <div class="form-group">
-            <input name="password" type="password" class="form-control" placeholder="Enter your password">
+        <div class="mb-3">
+            <input name="password" type="password" class="form-control form-control-lg" placeholder="Enter your password">
         </div>
 
         <!-- user will confirm their password -->
-        <div class="form-group">
-            <input name="confirmation" type="password" class="form-control" placeholder="Confirm password">
+        <div class="mb-3">
+            <input name="confirmation" type="password" class="form-control form-control-lg" placeholder="Confirm password">
         </div>
 
         <!-- button to submit information -->
-        <button class="btn btn-primary" type="submit">Register</button>
+        <button class="btn btn-primary btn-lg" type="submit">Register</button>
 
     </form>
 {% endblock %}
