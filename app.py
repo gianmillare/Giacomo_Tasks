@@ -228,7 +228,7 @@ def reserve():
         return redirect("/")
 
 # Complete Task: Users can complete a task and move it to a completed table for records of the week
-@app.route("/delete/<reserve_id>", methods=["GET", "POST"])
+@app.route("/delete/<reserve_id>", methods=["POST"])
 @login_required
 def complete_task(reserve_id):
     """ User will complete a task, remove it from reserved, and move to completed database """
@@ -236,7 +236,7 @@ def complete_task(reserve_id):
     # Query the title and score of the completed task in reserved db
     c.execute("""
     SELECT title, score FROM reserved WHERE reserve_id = :reserve_id
-    """, {"reserve_id", reserve_id})
+    """, {"reserve_id": reserve_id})
 
     completed_task = c.fetchall()[0]
 
