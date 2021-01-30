@@ -484,15 +484,23 @@ def reset():
             DELETE FROM reserved
             """)
             conn.commit()
+
+            c.execute("""
+            DELETE FROM completed_tasks
+            """)
+            conn.commit()
         
             c.execute("""
             UPDATE tasks SET user_id = 0 WHERE user_id != 0
             """)
             conn.commit()
         
-        flash("Reset successful!")
+            flash("Reset successful!")
 
-        return redirect("/")
+            return redirect("/")
+        else:
+            flash("Please ensure it is 1) Sunday and 2) all housemates have completed their tasks.")
+            return redirect("/reset")
 
 # Logout Function
 @app.route("/logout")
