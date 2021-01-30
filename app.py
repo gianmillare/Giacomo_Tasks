@@ -240,6 +240,34 @@ def complete_task(reserve_id):
 
     return redirect("/")
 
+# If a user changes their mind on a task, they have the option to remove it
+@app.route("/remove_task/<reserve_id>", methods=["POST"])
+@login_required
+def remove_task(reserve_id):
+    """ User removes the task from their reserved list """
+
+    # Query the tasks title
+    c.execute("""
+    SELECT title FROM reserved WHERE reserve_id = :reserve_id
+    """, {"reserve_id": reserve_id})
+
+    title = c.fetchall()[0][0]
+
+    # Delete the task in the reserved db using reserve_id
+    c.execute("""
+    DELETE FROM reserved WHERE reserve_id = :reserve_id
+    """, {"reserve_id": reserve_id})
+    conn.commit()
+
+    # Change the user_id in the tasks db back to 0 since it is no longer reserved
+    c.execute("""
+    UPDATE tasks SET user_id = 0 WHERE title = :title AND user_id = :user_id
+    """, {"title": title, "user_id": session["user_id"]})
+
+    flash("Task successfully removed from your list!")
+
+    return redirect("/")
+
 
 # (COMPLETED) Create: Users can create a task to add to the master list
 @app.route("/create", methods=["GET", "POST"])
