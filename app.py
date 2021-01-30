@@ -76,7 +76,7 @@ def index():
 
     # Query the reserved list for the specific user.
     c.execute("""
-    SELECT title, description, score FROM reserved WHERE user_id = :user_id
+    SELECT reserve_id, title, description, score FROM reserved WHERE user_id = :user_id
     """, {"user_id": session["user_id"]})
 
     rows = c.fetchall()
@@ -87,13 +87,15 @@ def index():
     # append the object into the list for easier iteration
     for row in rows:
         user_reserved_tasks.append({
-            "title": row[0],
-            "description": row[1],
-            "score": row[2]
+            "reserve_id": row[0],
+            "title": row[1],
+            "description": row[2],
+            "score": row[3]
         })
     
     if len(user_reserved_tasks) == 0:
         user_reserved_tasks = [{
+            "reserve_id": 0,
             "title": "---",
             "description": "Your Task list is empty. Please go to Reserve to assign tasks.",
             "score": 0
@@ -197,6 +199,8 @@ def reserve():
 
         conn.commit()
 
+        flash("Task reserved! Please view your reserved tasks below.")
+
         return redirect("/")
 
 # Complete Task: Users can complete a task and move it to a completed table for records of the week
@@ -204,11 +208,25 @@ def reserve():
 @login_required
 def complete_task(reserve_id):
     """ User will complete a task, remove it from reserved, and move to completed database """
+
+    # Query the title and score of the completed task in reserved db
+    c.execute("""
+    SELECT title, score FROM reserved WHERE reserve_id = :reserve_id
+    """, {"reserve_id", reserve_id})
+
+    completed_task = c.fetchall()[0]
+
+    title = completed_task[0]
+    score = completed_task[1]
     
     c.execute("""
     DELETE FROM reserved WHERE reserve_id = :reserve_id
     """, {"reserve_id": reserve_id})
+    conn.commit()
 
+    c.execute("""
+    INSERT INTO completed_tasks (user_id, title, score) VALUES (:user_id, :title, :score)
+    """, {"user_id": session["user_id"], "title": title, "score": score})
     conn.commit()
 
     return redirect("/")

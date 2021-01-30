@@ -99,7 +99,7 @@
                 <tbody>
                     {% for i in user_reserved_tasks %}
                     <tr>
-                        <td>{{ i["title"] }}</td>
+                        <td>{{ i["title"] }} <form style="display: inline; float: right;" method="POST" action="{{ url_for('complete_task', reserve_id=i.reserve_id) }}"><button class="btn btn-danger btn-sm" type="submit">-</button></form></td>
                         <td>{{ i["description"] }}</td>
                         <td>{{ i["score"] }}</td>
                     </tr>
