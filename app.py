@@ -114,7 +114,7 @@ def index():
 
     # ------------ DISPLAY THE AVAILABLE TASKS LIST --------------------
     c.execute("""
-    SELECT title, description, score FROM tasks WHERE user_id = 0
+    SELECT title, description, score FROM tasks WHERE user_id = 0 ORDER BY score DESC
     """)
     available_tasks = c.fetchall()
     displaying_available_tasks = []
