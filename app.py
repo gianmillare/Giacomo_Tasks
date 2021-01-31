@@ -158,6 +158,13 @@ def index():
 
     return render_template("index.html", user_reserved_tasks=user_reserved_tasks, items=items, user_completed_tasks=user_completed_tasks, displaying_available_tasks=displaying_available_tasks, contact_info=contact_info)
 
+# Scoreboard: All users scores are displayed
+@app.route("/scoreboard")
+@login_required
+def scoreboard():
+    """ Users are able to view the current scores of other housemates accrued by completing tasks """
+
+
 # (COMPLETED) Reserve: Users can assign certain tasks to themselves
 @app.route("/reserve", methods=["GET", "POST"])
 @login_required
