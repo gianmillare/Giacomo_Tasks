@@ -138,6 +138,36 @@
             </table>
         </div>
     </div>
+    
+    <hr>
+
+    <!-- List out the Reserved Tasks -->
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered caption-top">
+                <caption>Available Tasks</caption>
+
+                <thead class="table-success">
+                    <tr>
+                        <th scope="col" style="font-size: large; text-align: center;">Title</th>
+                        <th scope="col" style="font-size: large; text-align: center;">Description</th>
+                        <th scope="col" style="font-size: large; text-align: center;">Score</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for i in displaying_available_tasks %}
+                        <tr>
+                            <td>{{ i.title }}</td>
+                            <td>{{ i.description }}</td>
+                            <td>{{ i.score }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
 
     <hr>
 
