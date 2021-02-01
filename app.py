@@ -114,15 +114,20 @@ def index():
 
     # ------------ DISPLAY THE SCOREBOARD --------------------
     c.execute("""
-    SELECT id, name FROM housemates
+    SELECT name, sum(score) FROM housemates 
+    INNER JOIN completed_tasks 
+    ON housemates.id = completed_tasks.user_id
+    GROUP BY name;
     """)
 
-    names = []
+    results = c.fetchall()
 
-    for i in c.fetchall():
-        names.append({
-            "id": i[0],
-            "name": i[1]
+    scoreboard = []
+
+    for i in results:
+        scoreboard.append({
+            "name": i[0],
+            "score": i[1]
         })
 
     # ------------ DISPLAY THE AVAILABLE TASKS LIST --------------------
@@ -169,32 +174,7 @@ def index():
             'email': i[2]
         })
 
-    return render_template("index.html", user_reserved_tasks=user_reserved_tasks, items=items, user_completed_tasks=user_completed_tasks, displaying_available_tasks=displaying_available_tasks, contact_info=contact_info, names=names)
-
-# Scoreboard: All users scores are displayed
-@app.route("/scoreboard")
-@login_required
-def scoreboard():
-    """ Users are able to view the current scores of other housemates accrued by completing tasks """
-
-    # query the names of all the housemates
-    c.execute("""
-    SELECT id, name FROM housemates
-    """)
-
-    query_names = c.fetchall()
-    print(query_names)
-    names = []
-
-    for i in query_names:
-        names.append({
-            "id": i[0],
-            "name": i[1]
-        })
-
-    return render_template("index.html", names=names)
-
-
+    return render_template("index.html", user_reserved_tasks=user_reserved_tasks, items=items, user_completed_tasks=user_completed_tasks, displaying_available_tasks=displaying_available_tasks, contact_info=contact_info, scoreboard=scoreboard)
 
 # (COMPLETED) Reserve: Users can assign certain tasks to themselves
 @app.route("/reserve", methods=["GET", "POST"])
