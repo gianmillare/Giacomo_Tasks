@@ -63,7 +63,7 @@
     <div class="row">
 
         <!-- List of Reserved Gym Times -->
-        <div class="col-6">
+        <div class="col-8">
 
             <table class="table table-bordered caption-top">
                 <caption>Reserved Gym Times</caption>
@@ -87,7 +87,7 @@
         </div>
 
         <!-- Display the scoreboard -->
-        <div class="col-6">
+        <div class="col-4">
 
             <table class="table table-bordered caption-top">
                 <caption>Scoreboard</caption>
@@ -102,7 +102,7 @@
                     {% for i in scoreboard %}
                     <tr>
                         <td>{{ i.name }}</td>
-                        <td>{{ i.score }}</td>
+                        <td style="text-align: center;">{{ i.score }}</td>
                     </tr>
                     {% endfor %} 
                 </tbody>
