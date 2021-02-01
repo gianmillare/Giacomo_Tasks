@@ -129,6 +129,19 @@ def index():
             "name": i[0],
             "score": i[1]
         })
+    
+    if len(scoreboard) == 0:
+        c.execute("""
+        SELECT name FROM housemates
+        """)
+
+        results = c.fetchall()
+
+        for i in results:
+            scoreboard.append({
+                "name": i[0],
+                "score": 0
+            })
 
     # ------------ DISPLAY THE AVAILABLE TASKS LIST --------------------
     c.execute("""
