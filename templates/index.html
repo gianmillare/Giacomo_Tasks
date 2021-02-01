@@ -99,10 +99,10 @@
                 </thead>
         
                 <tbody>
-                    {% for i in names %}
+                    {% for i in scoreboard %}
                     <tr>
                         <td>{{ i.name }}</td>
-                        <td>----</td>
+                        <td>{{ i.score }}</td>
                     </tr>
                     {% endfor %} 
                 </tbody>
