@@ -99,10 +99,12 @@
                 </thead>
         
                 <tbody>
+                    {% for i in names %}
                     <tr>
-                        <td scope="row">----</td>
-                        <td scope="row">----</td>
+                        <td>{{ i.name }}</td>
+                        <td>----</td>
                     </tr>
+                    {% endfor %} 
                 </tbody>
             </table>
     

@@ -112,6 +112,19 @@ def index():
     
     # ------------ DISPLAY THE RESERVED GYM TIMES OF EVERYONE --------------------
 
+    # ------------ DISPLAY THE SCOREBOARD --------------------
+    c.execute("""
+    SELECT id, name FROM housemates
+    """)
+
+    names = []
+
+    for i in c.fetchall():
+        names.append({
+            "id": i[0],
+            "name": i[1]
+        })
+
     # ------------ DISPLAY THE AVAILABLE TASKS LIST --------------------
     c.execute("""
     SELECT title, description, score FROM tasks WHERE user_id = 0 ORDER BY score DESC
@@ -156,7 +169,7 @@ def index():
             'email': i[2]
         })
 
-    return render_template("index.html", user_reserved_tasks=user_reserved_tasks, items=items, user_completed_tasks=user_completed_tasks, displaying_available_tasks=displaying_available_tasks, contact_info=contact_info)
+    return render_template("index.html", user_reserved_tasks=user_reserved_tasks, items=items, user_completed_tasks=user_completed_tasks, displaying_available_tasks=displaying_available_tasks, contact_info=contact_info, names=names)
 
 # Scoreboard: All users scores are displayed
 @app.route("/scoreboard")
@@ -166,18 +179,20 @@ def scoreboard():
 
     # query the names of all the housemates
     c.execute("""
-    SELECT id, name FROM housemates ORDER BY id
+    SELECT id, name FROM housemates
     """)
 
+    query_names = c.fetchall()
+    print(query_names)
     names = []
 
-    for i in c.fetchall():
+    for i in query_names:
         names.append({
             "id": i[0],
             "name": i[1]
         })
 
-    
+    return render_template("index.html", names=names)
 
 
 
