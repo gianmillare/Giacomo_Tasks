@@ -164,6 +164,22 @@ def index():
 def scoreboard():
     """ Users are able to view the current scores of other housemates accrued by completing tasks """
 
+    # query the names of all the housemates
+    c.execute("""
+    SELECT id, name FROM housemates ORDER BY id
+    """)
+
+    names = []
+
+    for i in c.fetchall():
+        names.append({
+            "id": i[0],
+            "name": i[1]
+        })
+
+    
+
+
 
 # (COMPLETED) Reserve: Users can assign certain tasks to themselves
 @app.route("/reserve", methods=["GET", "POST"])
