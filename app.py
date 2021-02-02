@@ -461,12 +461,6 @@ def gym():
         # Synthesize the times above into a string format, and push into "gym_reserve" database under user_id
         start = request.form.get("start_times")
         end = request.form.get("end_times")
-        date = request.form.get("gym_date")
-
-        # query the number of times the user appears in reserved_gym, if less than 3, they may reserve more dates
-        # count_of_reservations = c.execute("""
-        # SELECT
-        # """)
 
         # format looks like 12:00AM 1:00AM 2021-01-24
         # if the times are form PM to AM, we need to change user_id using gym_times_id and from end of database to start
