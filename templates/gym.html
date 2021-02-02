@@ -25,22 +25,9 @@
 
             </div>
 
-            <!-- User selects the date that they reserved it -->
-            <div class="mb-3">
-                <input type="date" id="gym_date" name="gym_date" required onchange="enableButton()">
-            </div>
-
         <!-- button to reserve the time slot -->
-        <button class="btn btn-primary btn-lg" type="submit" id="submit" disabled>Reserve</button>
+        <button class="btn btn-primary btn-lg" type="submit" id="submit">Reserve</button>
 
     </form>
 
-    <!-- Javascript used to disable the button if the values above are empty -->
-    <script>
-        function enableButton() {
-            var gym_date = document.getElementById('gym_date');
-            var buttonElem = document.getElementById('submit');
-            buttonElem.disabled = !gym_date.value;
-        }
-    </script>
 {% endblock %}
