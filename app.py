@@ -527,8 +527,8 @@ def gym():
 
         # Push the times into the homepage database
         c.execute("""
-        INSERT INTO reserved_gym (user_id, start, end, date) VALUES (?, ?, ?, ?)
-        """, (session["user_id"], start, end, date))
+        INSERT INTO reserved_gym (user_id, start, end) VALUES (?, ?, ?)
+        """, (session["user_id"], start, end))
 
         conn.commit()
 
