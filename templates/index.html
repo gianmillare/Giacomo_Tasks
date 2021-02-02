@@ -77,12 +77,14 @@
                 </thead>
         
                 <tbody>
+                    {% for i in display_reserved_gym %}
                     <tr>
-                        <td scope="row">----</td>
-                        <td scope="row">----</td>
-                        <td scope="row">----</td>
-                        <td scope="row">----</td>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.start }}</td>
+                        <td>{{ i.end }}</td>
+                        <td>{{ i.date }}</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
     

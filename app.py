@@ -111,6 +111,31 @@ def index():
         })
     
     # ------------ DISPLAY THE RESERVED GYM TIMES OF EVERYONE --------------------
+    c.execute("""
+    SELECT name, start, end, date FROM housemates
+    INNER JOIN reserved_gym
+    ON housemates.id = reserved_gym.user_id
+    """)
+
+    results = c.fetchall()
+
+    display_reserved_gym = []
+
+    for i in results:
+        display_reserved_gym.append({
+            "name": i[0],
+            "start": i[1],
+            "end": i[2],
+            "date": i[3]
+        })
+    
+    if len(display_reserved_gym) == 0:
+        display_reserved_gym.append({
+            "name": "---",
+            "start": "---",
+            "end": "---",
+            "date": "---"
+        })
 
     # ------------ DISPLAY THE SCOREBOARD --------------------
     c.execute("""
@@ -187,7 +212,7 @@ def index():
             'email': i[2]
         })
 
-    return render_template("index.html", user_reserved_tasks=user_reserved_tasks, items=items, user_completed_tasks=user_completed_tasks, displaying_available_tasks=displaying_available_tasks, contact_info=contact_info, scoreboard=scoreboard)
+    return render_template("index.html", user_reserved_tasks=user_reserved_tasks, items=items, user_completed_tasks=user_completed_tasks, displaying_available_tasks=displaying_available_tasks, contact_info=contact_info, scoreboard=scoreboard, display_reserved_gym=display_reserved_gym)
 
 # (COMPLETED) Reserve: Users can assign certain tasks to themselves
 @app.route("/reserve", methods=["GET", "POST"])
