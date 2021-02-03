@@ -79,9 +79,9 @@
                 <tbody>
                     {% for i in display_reserved_gym %}
                     <tr>
-                        <td>{{ i.name }}</td>
-                        <td>{{ i.start }}</td>
-                        <td>{{ i.end }}</td>
+                        <td style="text-align: center;"><form style="display: inline; float: left;" method="POST" action="{{ url_for('delete_gym', reserve_id=i.reserve_id) }}"><button class="btn btn-danger btn-sm" type="submit">-</button></form>{{ i.name }}</td>
+                        <td style="text-align: center;">{{ i.start }}</td>
+                        <td style="text-align: center;">{{ i.end }}</td>
                         <td style="text-align: center;">{{ i.date }}</td>
                     </tr>
                     {% endfor %}

@@ -112,7 +112,7 @@ def index():
     
     # ------------ DISPLAY THE RESERVED GYM TIMES OF EVERYONE --------------------
     c.execute("""
-    SELECT name, start, end, date FROM housemates
+    SELECT name, start, end, date, reserve_id FROM housemates
     INNER JOIN reserved_gym
     ON housemates.id = reserved_gym.user_id
     """)
@@ -123,18 +123,11 @@ def index():
 
     for i in results:
         display_reserved_gym.append({
+            "reserve_id": i[4],
             "name": i[0],
             "start": i[1],
             "end": i[2],
             "date": i[3]
-        })
-    
-    if len(display_reserved_gym) == 0:
-        display_reserved_gym.append({
-            "name": "---",
-            "start": "---",
-            "end": "---",
-            "date": "---"
         })
 
     # ------------ DISPLAY THE SCOREBOARD --------------------
@@ -558,6 +551,25 @@ def gym():
         conn.commit()
 
         return redirect("/")
+
+# Delete or complete a reserved gym time
+@app.route("/delete_gym/<reserve_id>", methods=["POST"])
+@login_required
+def delete_gym(reserve_id):
+    """ User confirms or deletes a reservation under the gym feature """
+
+    c.execute("""
+    DELETE FROM reserved_gym WHERE reserve_id = :reserve_id
+    """, {"reserve_id": reserve_id})
+    conn.commit()
+
+    c.execute("""
+    UPDATE gym_times SET user_id = 0 WHERE user_id = :user_id
+    """, {"user_id": session["user_id"]})
+
+    conn.commit()
+
+    return redirect("/")
 
 # Add grocery item
 @app.route("/add_grocery", methods=["GET", "POST"])
