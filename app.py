@@ -603,9 +603,34 @@ def reset_():
     else:
         # if both submissions are Yes, then clear the reserved task list, and set all tasks in database to user_id = 0
         if request.form.get("choose_reset") == "Tasks":
-            return render_template("reset_tasks.html")
-        else:
+            c.execute("""
+            DELETE FROM reserved
+            """)
+            conn.commit()
+
+            c.execute("""
+            DELETE FROM completed_tasks
+            """)
+            conn.commit()
+        
+            c.execute("""
+            UPDATE tasks SET user_id = 0 WHERE user_id != 0
+            """)
+            conn.commit()
+        
+            flash("Tasks successfully reset!")
+
             return redirect("/")
+        else:
+            c.execute("""
+            UPDATE gym_times SET user_id = 0 WHERE user_id != 0
+            """)
+            conn.commit()
+
+            c.execute("""
+            DELETE FROM reserved_gym
+            """)
+            conn.commit()
 
 # Reset tasks
 @app.route("/reset_tasks", methods=["GET", "POST"])
@@ -633,7 +658,7 @@ def reset_tasks():
             """)
             conn.commit()
         
-            flash("Reset successful!")
+            flash("Tasks successfully reset!")
 
             return redirect("/")
         else:

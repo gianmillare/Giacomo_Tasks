@@ -9,7 +9,7 @@
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for msg in messages %}
-            <div class="alert alert-warning" role="alert" style="text-align: center;">
+            <div class="alert alert-danger" role="alert" style="text-align: center;">
                 {{msg}}
             </div>
         {% endfor %}
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Button to confirm reset -->
-    <button class="btn btn-primary btn-lg" type="submit" id="submit" disabled>Confirm</button>
+    <button class="btn btn-danger btn-lg" type="submit" id="submit" disabled>Reset</button>
 
 </form>
 
