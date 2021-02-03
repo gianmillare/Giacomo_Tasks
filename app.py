@@ -632,6 +632,10 @@ def reset_():
             """)
             conn.commit()
 
+            flash("Gym times successfully reset!")
+
+            return redirect("/")
+
 # Reset tasks
 @app.route("/reset_tasks", methods=["GET", "POST"])
 @login_required
