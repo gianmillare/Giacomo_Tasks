@@ -559,16 +559,6 @@ def gym():
 
         return redirect("/")
 
-# Reset Gym reservations
-@app.route("/gym_reset", methods=["GET", "POST"])
-@login_required
-def gym_reset():
-    """ User can decide to reset all gym times taking into account housemate completion """
-    if request.method == "GET":
-        return render_template("gym_reset.html")
-    else:
-        return redirect("/")
-
 # Add grocery item
 @app.route("/add_grocery", methods=["GET", "POST"])
 @login_required
@@ -602,14 +592,47 @@ def delete_grocery(item_id):
 
     return redirect("/")
 
-# Reset the week
+# Reset Option: tasks, gym
 @app.route("/reset", methods=["GET", "POST"])
 @login_required
-def reset():
+def reset_():
     """ Users are able to reset the reserved tasks list where everyone will now have no tasks reserved """
     if request.method == "GET":
-        flash("Caution: Resetting will remove all reserved tasks from everyone!")
+        flash("Caution: This action will reset for ALL!")
         return render_template("reset.html")
+    else:
+        # if both submissions are Yes, then clear the reserved task list, and set all tasks in database to user_id = 0
+        if request.form.get("confirm_sunday") == "Yes" and request.form.get("all_complete") == "Yes":
+
+            c.execute("""
+            DELETE FROM reserved
+            """)
+            conn.commit()
+
+            c.execute("""
+            DELETE FROM completed_tasks
+            """)
+            conn.commit()
+        
+            c.execute("""
+            UPDATE tasks SET user_id = 0 WHERE user_id != 0
+            """)
+            conn.commit()
+        
+            flash("Reset successful!")
+
+            return redirect("/")
+        else:
+            flash("Please ensure it is 1) Sunday and 2) all housemates have completed their tasks.")
+            return redirect("/reset")
+
+# Reset tasks
+@app.route("/reset_tasks", methods=["GET", "POST"])
+@login_required
+def reset_tasks():
+    """ Users are able to reset the reserved tasks list where everyone will now have no tasks reserved """
+    if request.method == "GET":
+        return render_template("reset_tasks.html")
     else:
         # if both submissions are Yes, then clear the reserved task list, and set all tasks in database to user_id = 0
         if request.form.get("confirm_sunday") == "Yes" and request.form.get("all_complete") == "Yes":
