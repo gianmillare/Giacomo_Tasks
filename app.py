@@ -602,29 +602,10 @@ def reset_():
         return render_template("reset.html")
     else:
         # if both submissions are Yes, then clear the reserved task list, and set all tasks in database to user_id = 0
-        if request.form.get("confirm_sunday") == "Yes" and request.form.get("all_complete") == "Yes":
-
-            c.execute("""
-            DELETE FROM reserved
-            """)
-            conn.commit()
-
-            c.execute("""
-            DELETE FROM completed_tasks
-            """)
-            conn.commit()
-        
-            c.execute("""
-            UPDATE tasks SET user_id = 0 WHERE user_id != 0
-            """)
-            conn.commit()
-        
-            flash("Reset successful!")
-
-            return redirect("/")
+        if request.form.get("choose_reset") == "Tasks":
+            return render_template("reset_tasks.html")
         else:
-            flash("Please ensure it is 1) Sunday and 2) all housemates have completed their tasks.")
-            return redirect("/reset")
+            return redirect("/")
 
 # Reset tasks
 @app.route("/reset_tasks", methods=["GET", "POST"])
