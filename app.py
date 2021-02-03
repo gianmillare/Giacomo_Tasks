@@ -559,6 +559,16 @@ def gym():
 
         return redirect("/")
 
+# Reset Gym reservations
+@app.route("/gym_reset", methods=["GET", "POST"])
+@login_required
+def gym_reset():
+    """ User can decide to reset all gym times taking into account housemate completion """
+    if request.method == "GET":
+        return render_template("gym_reset.html")
+    else:
+        return redirect("/")
+
 # Add grocery item
 @app.route("/add_grocery", methods=["GET", "POST"])
 @login_required
