@@ -18,15 +18,56 @@
 
     <body>
         <!-- Navbar -->
-        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark border">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Navbar</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tasks</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/reserve">Reserve</a></li>
+                                <li><a class="dropdown-item" href="/create">Create</a></li>
+                                <li><a class="dropdown-item" href="/edit">Edit</a></li>
+                                <li><a class="dropdown-item" href="/delete">Delete</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/gym" tabindex="-1" aria-disabled="true">Gym</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto mt-2">
+                        <li style="float: right;" class="nav-item"><a class="nav-link" href="/reset">Reset</a></li>
+                        <li style="float: right;" class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/"><span class="giacomo_brand">Giacomo</span></a>
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars"></i>
+                </button>
                 <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbar">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     {% if session.user_id %}
                         <ul class="navbar-nav mr-auto mt-2">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">Tasks</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="/reserve">Reserve</a></li>
+                                    <li><a class="dropdown-item" href="/create">Create</a></li>
+                                    <li><a class="dropdown-item" href="/edit">Edit</a></li>
+                                    <li><a class="dropdown-item" href="/delete">Delete</a></li>
+                                </ul>
+                            </li>
                             <li class="nav-item"><a class="nav-link" href="/reserve">Reserve</a></li>
                             <li class="nav-item"><a class="nav-link" href="/create">Create</a></li>
                             <li class="nav-item"><a class="nav-link" href="/edit">Edit</a></li>
@@ -45,7 +86,7 @@
                     {% endif %}
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
         <!-- Main body -->
         <main class="container p-5">
