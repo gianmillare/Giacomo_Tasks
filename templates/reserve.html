@@ -5,19 +5,21 @@
 {% endblock %}
 
 {% block main %}
-    <form action="/reserve" method="POST">
-        <div class="mb-3">
-            <select id="task_list" class="form-select form-select-lg mb-3" name="task_item" required onchange="enableButton()">
-                <option selected value="">Select a task</option>
-                {% for task in tasks %}
-                    <option value="{{ task }}">{{ task }}</option>
-                {% endfor %}
-            </select>
-        </div>
+    <div class="col-6" style="margin: auto;">
+        <form action="/reserve" method="POST">
+            <div class="mb-3">
+                <select id="task_list" class="form-select form-select-md mb-3" name="task_item" required onchange="enableButton()">
+                    <option selected value="">Select a task</option>
+                    {% for task in tasks %}
+                        <option value="{{ task }}">{{ task }}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
-        <button class="btn btn-primary btn-lg" type="submit" id="submit" disabled>Reserve</button>
+            <button class="btn btn-primary btn-md" type="submit" id="submit" disabled>Reserve</button>
 
-    </form>
+        </form>
+    </div>
 
     <script>
         function enableButton() {
