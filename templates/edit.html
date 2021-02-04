@@ -5,11 +5,12 @@
 {% endblock %}
 
 {% block main %}
+<div class="col-6" style="margin: auto;">
     <form action="/edit" method="POST">
 
         <!-- dropdown menu to select a task to edit -->
         <div class="mb-3">
-            <select id="task_id" class="form-select form-select-lg mb-3" name="task_id" required onchange="enableButton()">
+            <select id="task_id" class="form-select form-select-md mb-3" name="task_id" required onchange="enableButton()">
                 <option selected value="">Please choose a task</option>
                 {% for task in tasks %}
                     <option value="{{ task }}">{{ task }}</option>
@@ -20,15 +21,15 @@
         <!-- Users have three options to change: Title, Description, and Score -->
         <!-- If empty, then the existing value will stay the same -->
         <div class="mb-3">
-            <input class="form-control form-control-lg" name="task_title" type="text" placeholder="Change Title">
+            <input class="form-control form-control-md" name="task_title" type="text" placeholder="Change Title">
         </div>
 
         <div class="mb-3">
-            <input class="form-control form-control-lg" name="task_desc" type="text" placeholder="Change Description">
+            <input class="form-control form-control-md" name="task_desc" type="text" placeholder="Change Description">
         </div>
 
         <div class="mb-3">
-            <select id="task_score" class="form-select form-select-lg mb-3" name="task_score" required onchange="enableButton()">
+            <select id="task_score" class="form-select form-select-md mb-3" name="task_score" required onchange="enableButton()">
                 <option selected value="">Change Difficulty</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -39,9 +40,10 @@
         </div>
 
         <!-- Button to submit the changes made above -->
-        <button class="btn btn-primary btn-lg" type="submit" id="submit" disabled>Edit Task</button>
+        <button class="btn btn-primary btn-md" type="submit" id="submit" disabled>Edit Task</button>
 
     </form>
+</div>
 
     <!-- Disable the submit button if no task is selected -->
     <script>
