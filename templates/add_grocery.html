@@ -5,17 +5,19 @@
 {% endblock %}
 
 {% block main %}
+<div class="col-6" style="margin: auto;">
     <form action="/add_grocery" method="POST">
 
         <!-- User will input the item they want to add -->
-        <div class="mb-3">
-            <input class="form-control form-control-lg" id="add_item" name="add_item" onkeyup="enableButton()" type="text" placeholder="Item Name" autofocus>
+        <div class="mb-2">
+            <input class="form-control form-control-md" id="add_item" name="add_item" onkeyup="enableButton()" type="text" placeholder="Item Name" autofocus>
         </div>
 
         <!-- Button to submit the item into the list -->
-        <button class="btn btn-primary btn-lg" type="submit" id="submit" disabled>Add Item</button>
+        <button class="btn btn-primary btn-md" type="submit" id="submit" disabled>Add Item</button>
 
     </form>
+</div>
 
     <!-- Disable the button if no value is inputted above -->
     <script>

@@ -9,17 +9,17 @@
     <form action="/create" method="POST">
 
         <!-- User will enter a title -->
-        <div class="mb-3">
+        <div class="mb-2">
             <input class="form-control form-control-md" id="task_title" name="title" onkeyup="enableButton()" type="text" placeholder="Title" autofocus>
         </div>
 
         <!-- User will enter a description of the task -->
-        <div class="mb-3">
+        <div class="mb-2">
             <input class="form-control form-control-md" id="task_desc" name="description" onkeyup="enableButton()" type="text" placeholder="Description">
         </div>
 
         <!-- User will select a difficulty for the task (this is also the score they receive on completion) -->
-        <div class="mb-3">
+        <div class="mb-2">
             <select id="task_score" class="form-select form-select-md mb-3" name="score" required onchange="enableButton()">
                 <option selected value="">Difficulty</option>
                 <option value="1">1</option>

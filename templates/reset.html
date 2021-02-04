@@ -6,31 +6,35 @@
 
 {% block main %}
 
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <div class="alert alert-danger" role="alert" style="text-align: center;">
-                {{msg}}
-            </div>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
+<div class="col-8" style="margin: auto;">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <div class="alert alert-danger" role="alert" style="text-align: center;">
+                    {{msg}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
 
-<form action="/reset" method="POST">
+<div class="col-6" style="margin: auto;">
+    <form action="/reset" method="POST">
 
-    <!-- User decides between resetting tasks or resetting gym reservations -->
-    <div class="mb-3">
-        <select id="choose_reset" class="form-select form-select-lg mb-3" name="choose_reset" required onchange="enableButton()">
-            <option selected value="">What do you want to reset?</option>
-            <option value="Tasks">Tasks</option>
-            <option value="Gym Times">Gym Times</option>
-        </select>
-    </div>
+        <!-- User decides between resetting tasks or resetting gym reservations -->
+        <div class="mb-3">
+            <select id="choose_reset" class="form-select form-select-md mb-2" name="choose_reset" required onchange="enableButton()">
+                <option selected value="">What do you want to reset?</option>
+                <option value="Tasks">Tasks</option>
+                <option value="Gym Times">Gym Times</option>
+            </select>
+        </div>
 
-    <!-- Button to confirm reset -->
-    <button class="btn btn-danger btn-lg" type="submit" id="submit" disabled>Reset</button>
+        <!-- Button to confirm reset -->
+        <button class="btn btn-danger btn-md" type="submit" id="submit" disabled>Reset</button>
 
-</form>
+    </form>
+</div>
 
 <script>
     function enableButton() {
