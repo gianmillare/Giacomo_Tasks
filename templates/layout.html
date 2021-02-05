@@ -20,39 +20,39 @@
         
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">Giacomo</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    {% if session.user_id %}
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tasks</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="/reserve">Reserve</a></li>
-                                    <li><a class="dropdown-item" href="/create">Create</a></li>
-                                    <li><a class="dropdown-item" href="/edit">Edit</a></li>
-                                    <li><a class="dropdown-item" href="/delete">Delete</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/gym" tabindex="-1" aria-disabled="true">Gym</a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ms-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/reset">Reset</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
-                        </ul>
-                    {% else %}
-                        <ul class="navbar-nav ms-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
-                        </ul>
-                    {% endif %}
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Giacomo</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        {% if session.user_id %}
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tasks</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="/reserve">Reserve</a></li>
+                                        <li><a class="dropdown-item" href="/create">Create</a></li>
+                                        <li><a class="dropdown-item" href="/edit">Edit</a></li>
+                                        <li><a class="dropdown-item" href="/delete">Delete</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/gym" tabindex="-1" aria-disabled="true">Gym</a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav ms-auto mt-2">
+                                <li class="nav-item"><a class="nav-link" href="/reset">Reset</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                            </ul>
+                        {% else %}
+                            <ul class="navbar-nav ms-auto mt-2">
+                                <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                            </ul>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
         </nav>
 
         <!-- Main body -->
