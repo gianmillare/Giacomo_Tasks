@@ -5,10 +5,3 @@ h1 {
 input[type=checkbox]:checked + .task_row{
   text-decoration: line-through;
 }
-
-@media screen and (min-width:768px){
-  .navbar {
-    padding-left:90px;
-    padding-right:90px;
-  }
-}
