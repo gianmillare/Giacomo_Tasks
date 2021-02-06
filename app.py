@@ -97,7 +97,9 @@ def index():
 
     # Query the completed_tasks database with user_id
     c.execute("""
-    SELECT title, score, completed_on FROM completed_tasks WHERE user_id = :user_id
+    SELECT title, score, 
+    STRFTIME('%m/%d/%Y, %H:%M',completed_on)
+    FROM completed_tasks WHERE user_id = :user_id
     """, {"user_id": session["user_id"]})
 
     rows = c.fetchall()
@@ -112,7 +114,8 @@ def index():
     
     # ------------ DISPLAY THE RESERVED GYM TIMES OF EVERYONE --------------------
     c.execute("""
-    SELECT name, start, end, date, reserve_id FROM housemates
+    SELECT name, start, end, 
+    STRFTIME('%m/%d/%Y, %H:%M',date), reserve_id FROM housemates
     INNER JOIN reserved_gym
     ON housemates.id = reserved_gym.user_id
     """)
