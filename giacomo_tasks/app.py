@@ -691,3 +691,6 @@ def logout():
 
     session.clear()
     return redirect("/login")
+
+if __name__ == "__main__":
+    app.run()
