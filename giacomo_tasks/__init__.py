@@ -16,6 +16,9 @@ Session(app)
 conn = sqlite3.connect('giacomo.db', check_same_thread=False)
 c = conn.cursor()
 
+def getApp():
+    return app
+    
 # (COMPLETED) Register function
 @app.route("/register", methods=["GET", "POST"])
 def register():
