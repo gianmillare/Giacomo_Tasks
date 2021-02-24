@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create a Task
+{% endblock %}
+
+{% block main %}
+<div class="col-6" style="margin: auto;">
+    <form action="/create" method="POST">
+
+        <!-- User will enter a title -->
+        <div class="mb-2">
+            <input class="form-control form-control-md" id="task_title" name="title" onkeyup="enableButton()" type="text" placeholder="Title" autofocus>
+        </div>
+
+        <!-- User will enter a description of the task -->
+        <div class="mb-2">
+            <input class="form-control form-control-md" id="task_desc" name="description" onkeyup="enableButton()" type="text" placeholder="Description">
+        </div>
+
+        <!-- User will select a difficulty for the task (this is also the score they receive on completion) -->
+        <div class="mb-2">
+            <select id="task_score" class="form-select form-select-md mb-3" name="score" required onchange="enableButton()">
+                <option selected value="">Difficulty</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <!-- User clicks button to submit the new task -->
+        <button class="btn btn-primary btn-md" type="submit" id="submit" disabled>Create Task</button>
+
+    </form>
+</div>
+    <script>
+        function enableButton() {
+
+            var task_score = document.getElementById('task_score');
+
+            if (document.getElementById('task_title').value === "" || document.getElementById('task_desc').value === "" || !task_score.value) {
+                document.getElementById('submit').disabled = true;
+            } else {
+                document.getElementById('submit').disabled = false;
+            }
+        }
+    </script>
+{% endblock %}

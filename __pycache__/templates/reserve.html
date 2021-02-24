@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reserve
+{% endblock %}
+
+{% block main %}
+    <div class="col-6" style="margin: auto;">
+        <form action="/reserve" method="POST">
+            <div class="mb-2">
+                <select id="task_list" class="form-select form-select-md mb-3" name="task_item" required onchange="enableButton()">
+                    <option selected value="">Select a task</option>
+                    {% for task in tasks %}
+                        <option value="{{ task }}">{{ task }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button class="btn btn-primary btn-md" type="submit" id="submit" disabled>Reserve</button>
+
+        </form>
+    </div>
+
+    <script>
+        function enableButton() {
+            var selectedItem = document.getElementById('task_list');
+            var buttonElem = document.getElementById('submit');
+            buttonElem.disabled = !selectedItem.value;
+        }
+    </script>
+{% endblock %}

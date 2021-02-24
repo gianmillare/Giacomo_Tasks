@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Gym
+{% endblock %}
+
+{% block main %}
+<div class="col-6" style="margin: auto;">
+    <form action="/gym" method="POST">
+            <div class="mb-2">
+                <!-- User selects a start time from the drop down -->
+                <select id="start_times" class="form-select form-select-md mb-2" name="start_times" required>
+                    <option selected value="">Start Time</option>
+                    {% for time in times %}
+                        <option value="{{ time }}">{{ time }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- User selects a end time from the drop down -->
+                <select id="end_times" class="form-select form-select-md mb-2" name="end_times" required>
+                    <option selected value="">End Time</option>
+                    {% for time in times %}
+                        <option value="{{ time }}">{{ time }}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+
+        <!-- button to reserve the time slot -->
+        <button class="btn btn-primary btn-md" type="submit" id="submit">Reserve</button>
+
+    </form>
+</div>
+
+{% endblock %}

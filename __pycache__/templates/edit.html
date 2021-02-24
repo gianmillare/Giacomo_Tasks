@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Tasks
+{% endblock %}
+
+{% block main %}
+<div class="col-6" style="margin: auto;">
+    <form action="/edit" method="POST">
+
+        <!-- dropdown menu to select a task to edit -->
+        <div class="mb-2">
+            <select id="task_id" class="form-select form-select-md mb-3" name="task_id" required onchange="enableButton()">
+                <option selected value="">Please choose a task</option>
+                {% for task in tasks %}
+                    <option value="{{ task }}">{{ task }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Users have three options to change: Title, Description, and Score -->
+        <!-- If empty, then the existing value will stay the same -->
+        <div class="mb-2">
+            <input class="form-control form-control-md" name="task_title" type="text" placeholder="Change Title">
+        </div>
+
+        <div class="mb-2">
+            <input class="form-control form-control-md" name="task_desc" type="text" placeholder="Change Description">
+        </div>
+
+        <div class="mb-2">
+            <select id="task_score" class="form-select form-select-md mb-3" name="task_score" required onchange="enableButton()">
+                <option selected value="">Change Difficulty</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <!-- Button to submit the changes made above -->
+        <button class="btn btn-primary btn-md" type="submit" id="submit" disabled>Edit Task</button>
+
+    </form>
+</div>
+
+    <!-- Disable the submit button if no task is selected -->
+    <script>
+        function enableButton() {
+            var selectedItem = document.getElementById('task_id');
+            var buttonElem = document.getElementById('submit');
+            buttonElem.disabled = !selectedItem.value;
+        }
+    </script>
+{% endblock %}
