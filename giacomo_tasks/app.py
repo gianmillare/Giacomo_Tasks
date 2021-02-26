@@ -2,7 +2,7 @@
 from flask import Flask, render_template, redirect, request, session, flash
 from flask_session import Session
 import sqlite3
-from helpers import login_required
+from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.wrappers import Response
 from io import StringIO
@@ -16,6 +16,15 @@ Session(app)
 
 conn = sqlite3.connect('giacomo.db', check_same_thread=False)
 c = conn.cursor()
+
+def login_required(f):
+    """ Decorator to require login """
+    @wraps(f)
+    def decorated_functions(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_functions
 
 # (COMPLETED) Register function
 @app.route("/register", methods=["GET", "POST"])
