@@ -56,6 +56,12 @@ This app is called "Giacomo", named after the street that my good friends and I 
 
 <hr>
 
+### By clicking on the "Gym" option, users can reserve a duration of time to use the homemade gym in our garage.
+<img src="images/gym.png">
+<br>
+
+<hr>
+
 ### The "Reset" button acts as a "self-desstruct" button that resets all lists (chores, gym times, etc).
 <img src="images/reset.png">
 <br>
