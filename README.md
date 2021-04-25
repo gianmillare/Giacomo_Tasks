@@ -61,3 +61,9 @@ This app is called "Giacomo", named after the street that my good friends and I 
 <br>
 
 <hr>
+
+### The "Reset" button acts as a "self-desstruct" button that resets all lists (chores, gym times, etc).
+<img src="images/reset.png">
+<br>
+
+<hr>
