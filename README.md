@@ -14,3 +14,9 @@ This app is called "Giacomo", named after the street that my good friends and I 
 
 ### Users are first greeted by a Login Page. New Users will need to register.
 <img src="images/login.png">
+<br>
+
+<hr>
+
+### The register page consists of submitting a full name, username, password, and password confirmation. These metrics are purely for back end usage.
+<img src="images/register.png">
