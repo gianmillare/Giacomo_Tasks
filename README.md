@@ -34,3 +34,9 @@ This app is called "Giacomo", named after the street that my good friends and I 
 ### Clicking on Tasks -> Reserve will bring a user to a chore reservation screen. This is where users can choose a chore they would like to complete.
 <img src="images/reserve1.png">
 <img src="images/reserve2.png">
+<br>
+
+<hr>
+
+### If a new task needs to be added to the house, users have an option of creating a new task for the entire house to view.
+<img src="images/create.png">
