@@ -27,3 +27,10 @@ This app is called "Giacomo", named after the street that my good friends and I 
 ### Once logged in, the user will enter the homepage. Here, various things are viewable: announcements, reserved chores, completed chores, reserved gym times, grocery list, anc a contact list.
 <img src="images/homepage1.png">
 <img src="images/homepage2.png">
+<br>
+
+<hr>
+
+### Clicking on Tasks -> Reserve will bring a user to a chore reservation screen. This is where users can choose a chore they would like to complete.
+<img src="images/reserve1.png">
+<img src="images/reserve2.png">
