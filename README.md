@@ -10,4 +10,7 @@ This app is called "Giacomo", named after the street that my good friends and I 
 <p> - Reset all lists in the application. </p>
 <p> - And more... ? </p>
 
-<br>
+<hr>
+
+### Users are first greeted by a Login Page. New Users will need to register.
+<img src="images/login.png">
