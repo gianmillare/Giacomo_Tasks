@@ -44,7 +44,7 @@ This app is called "Giacomo", named after the street that my good friends and I 
 
 <hr>
 
-### Users also have the option to re-configure a task by selecting the "edit" option under "Tasks"
+### Users also have the option to re-configure a task by selecting the "edit" option under "Tasks".
 <img src="images/edit.png">
 <br>
 
@@ -52,6 +52,12 @@ This app is called "Giacomo", named after the street that my good friends and I 
 
 ### If a task is to be discontinued, users can select the "Delete" option to completely remove the task from the application.
 <img src="images/delete.png">
+<br>
+
+<hr>
+
+### By clicking on the "Gym" option, users can reserve a duration of time to use the homemade gym in our garage.
+<img src="images/gym.png">
 <br>
 
 <hr>
