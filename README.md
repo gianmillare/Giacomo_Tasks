@@ -40,3 +40,9 @@ This app is called "Giacomo", named after the street that my good friends and I 
 
 ### If a new task needs to be added to the house, users have an option of creating a new task for the entire house to view.
 <img src="images/create.png">
+<br>
+
+<hr>
+
+### Users also have the option to re-configure a task by selecting the "edit" option under "Tasks"
+<img src="images/edit.png">
