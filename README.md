@@ -20,3 +20,10 @@ This app is called "Giacomo", named after the street that my good friends and I 
 
 ### The register page consists of submitting a full name, username, password, and password confirmation. These metrics are purely for back end usage.
 <img src="images/register.png">
+<br>
+
+<hr>
+
+### Once logged in, the user will enter the homepage. Here, various things are viewable: announcements, reserved chores, completed chores, reserved gym times, grocery list, anc a contact list.
+<img src="images/homepage1.png">
+<img src="images/homepage2.png">
